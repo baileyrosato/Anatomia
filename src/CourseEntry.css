@@ -1,0 +1,38 @@
+.course-entry {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #182858;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    min-height: 25px;
+
+    ::placeholder {
+        color: #d2c8bf;
+    }
+  }
+  
+  button {
+    background-color: #d2c8bf;
+    color: #182858;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    max-width: 100px;
+    min-height: 25px;
+  }
+  
+  button:hover {
+    background-color: #b8ada4;
+  }
