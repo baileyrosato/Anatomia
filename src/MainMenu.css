@@ -1,0 +1,25 @@
+.main-menu {
+  }
+  
+  .main-menu h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .main-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .unit-container {
+    border: 1px solid black; 
+    border-radius: 8px;
+    margin-bottom: 10px; 
+    padding: 10px;
+  }
+  
+  .subunit-container {
+    margin-left: 20px;
+    padding: 10px;
+
+  }

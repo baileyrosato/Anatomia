@@ -1,24 +1,47 @@
 // SubunitPage.js
 
 // import react
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
+
+// import other pages
+import './SubunitPage.css';
+import ThreeDModel from './ThreeDModel';
 
 export default function SubunitPage() 
 {
-  // Get the unit and subunit parameters
+  // get the unit and subunit parameters
   const { unit, subunit } = useParams();
+  const [selectedColor, setSelectedColor] = useState(0.5);
 
-  // TODO: Fetch and display the actual data for the selected subunit
+  const handleColorChange = (value) => {
+    setSelectedColor(value);
+  };
+
+  // TODO: fetch and display the actual data for the selected subunit
   // For now, simply display the unit and subunit names
   return (
-    <div>
-      <h2>{unit}</h2>
-      <h3>{subunit}</h3>
-      {/* TODO: Display actual subunit data here 
-            This includes 3D model, course content, etc. retreived from database 
+    <div className="subunit-page">
+      <div>
+      </div>
+      <div className="cube-container">
+        <h2>{unit}</h2>
+        <h3>{subunit}</h3>
+        <ThreeDModel unit={unit} subunit={subunit} selectedColor={selectedColor} />
+        <label htmlFor="color-slider">Skin Tone:</label>
+        <input
+          id="color-slider"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={selectedColor}
+          onChange={(e) => handleColorChange(parseFloat(e.target.value))}
+        />
+        {/* TODO: display actual subunit data here 
+            this includes 3D model, course content, etc. retrieved from the database 
             and dynamically displayed */}
+      </div>
     </div>
   );
-};
-
+}
