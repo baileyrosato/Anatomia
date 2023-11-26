@@ -1,14 +1,17 @@
 .main-menu {
+  background-color: rgb(251, 248, 243);
   }
   
   .main-menu h2 {
     margin-bottom: 20px;
     text-align: center;
+    background-color: rgb(251, 248, 243);
   }
   
   .main-menu ul {
     list-style-type: none;
     padding: 0;
+    background-color: rgb(251, 248, 243);
   }
   
   .unit-container {
@@ -16,10 +19,11 @@
     border-radius: 8px;
     margin-bottom: 10px; 
     padding: 10px;
+    background-color: rgb(251, 248, 243);
   }
   
   .subunit-container {
     margin-left: 20px;
     padding: 10px;
-
+    background-color: rgb(251, 248, 243);
   }
