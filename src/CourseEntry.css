@@ -2,7 +2,7 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(251, 248, 243);
     border-radius: 4px;
     text-align: right;
   }
@@ -16,7 +16,8 @@
     border: none;
     border-radius: 15px;
     min-height: 25px;
-
+    position: relative;
+    top:200px;
     ::placeholder {
         color: #d2c8bf;
     }
@@ -31,6 +32,8 @@
     cursor: pointer;
     max-width: 100px;
     min-height: 25px;
+    position: relative;
+    top: 200px;
   }
   
   button:hover {
