@@ -29,19 +29,22 @@ export default function SubunitPage()
         <h3>{subunit}</h3>
         <ThreeDModel unit={unit} subunit={subunit} selectedColor={selectedColor} />
         <label htmlFor="color-slider">Skin Tone:</label>
-        <input
-          id="color-slider"
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={selectedColor}
-          onChange={(e) => handleColorChange(parseFloat(e.target.value))}
-        />
+      
         {/* TODO: display actual subunit data here 
             this includes 3D model, course content, etc. retrieved from the database 
             and dynamically displayed */}
       </div>
+      <div className='container-slider' >
+        <input className='container_input'
+            id="color-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={selectedColor}
+            onChange={(e) => handleColorChange(parseFloat(e.target.value))}
+          />
+      </div>  
     </div>
   );
 }
