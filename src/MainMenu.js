@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 
 import './MainMenu.css';
+import Nav from "./Navigation"
 
 
 // define the course data structure (TODO: This possibly needs to be stored 
@@ -50,6 +51,9 @@ export default function MainMenu() {
 
   return (
     <div className="main-menu">
+      <div className="Navigation">
+        <Nav />
+      </div>
       <h2>BIO201 Menu</h2>
       <ul>
         {courseData.map((course, index) => (

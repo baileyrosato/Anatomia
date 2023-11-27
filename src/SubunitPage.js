@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 // import other pages
 import './SubunitPage.css';
 import ThreeDModel from './ThreeDModel';
+import Nav from "./Navigation"
 
 export default function SubunitPage() 
 {
@@ -22,7 +23,8 @@ export default function SubunitPage()
   // For now, simply display the unit and subunit names
   return (
     <div className="subunit-page">
-      <div>
+      <div className="Navigation">
+        <Nav />
       </div>
       <div className="cube-container">
         <h2>{unit}</h2>
