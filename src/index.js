@@ -8,9 +8,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 // import other pages
-import App from './App';
+import App from './App.js';
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals.js';
 
 // set the app as the root
 const root = ReactDOM.createRoot(document.getElementById('root'));
