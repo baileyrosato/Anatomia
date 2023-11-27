@@ -1,7 +1,7 @@
 .course-entry {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #ccc;
     border-radius: 4px;
     text-align: right;
@@ -9,7 +9,7 @@
   
   input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
     background-color: #182858;
     color: white;

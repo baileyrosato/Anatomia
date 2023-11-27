@@ -3,13 +3,12 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // import other pages
-import CourseEntry from "./CourseEntry";
-import MainMenu from "./MainMenu";
+import CourseEntry from "./CourseEntry.js";
+import MainMenu from "./MainMenu.js";
 import SubunitPage from "./SubunitPage.js"; 
 
 // import style sheet
 import './App.css';
-
 
 export default function App() {
   return (
