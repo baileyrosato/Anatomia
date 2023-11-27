@@ -22,7 +22,6 @@ const HamburgerMenu = () => {
         <div className="menu-items">
           <a href="/MainMenu">Main Menu</a>
           <a href="https://ceias.nau.edu/capstone/projects/CS/2024/Anatomia_F23/">About</a>
-          <a href="#">Contact</a>
         </div>
       )}
     </div>

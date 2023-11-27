@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import './MainMenu.css';
 import Nav from "./Navigation"
+import DownloadPDFButton from "./DownloadPDF"
 
 
 // define the course data structure (TODO: This possibly needs to be stored 
@@ -79,6 +80,9 @@ export default function MainMenu() {
           </li>
         ))}
       </ul>
+      <div className="downloadLink">
+        <DownloadPDFButton />
+      </div>
     </div>
   );
 }
