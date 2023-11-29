@@ -6,7 +6,9 @@ import { useParams } from 'react-router-dom';
 
 // import other pages
 import './SubunitPage.css';
+import Menu from "./Navigation.js"
 import ThreeDModel from './ThreeDModel.js';
+
 
 export default function SubunitPage() 
 {
@@ -26,6 +28,10 @@ export default function SubunitPage()
   
   return (
     <div className="subunit-page">
+      {/* Hamburger menu */}
+      <div className="HamburgerMenu">
+        <Menu />
+      </div>
       <div className="cube-container">
         <div className="titles-container">
           <h2>{unit}</h2>

@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { firebase } from './config.js';
 
 import './MainMenu.css';
+import Nav from "./Navigation.js"
+import DownloadPDFButton from "./DownloadPDF.js"
 
 export default function MainMenu() {
 
@@ -48,6 +50,9 @@ export default function MainMenu() {
 
   return (
     <div className="main-menu">
+      <div className="Navigation">
+        <Nav />
+      </div>
       <h2>BIO201 Menu</h2>
       <ul>
         {courseData.map((course, index) => (
@@ -73,6 +78,9 @@ export default function MainMenu() {
           </li>
         ))}
       </ul>
+      <div className="downloadLink">
+        <DownloadPDFButton />
+      </div>
     </div>
   );
 }
