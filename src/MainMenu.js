@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import { firebase } from './config.js';
 
 import './MainMenu.css';
-import Nav from "./Navigation"
-import DownloadPDFButton from "./DownloadPDF"
+import Nav from "./Navigation.js"
+import DownloadPDFButton from "./DownloadPDF.js"
 
 export default function MainMenu() {
 

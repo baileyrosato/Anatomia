@@ -6,8 +6,7 @@ import { useParams } from 'react-router-dom';
 
 // import other pages
 import './SubunitPage.css';
-import ThreeDModel from './ThreeDModel';
-import Menu from "./Navigation"
+import Menu from "./Navigation.js"
 import ThreeDModel from './ThreeDModel.js';
 
 
