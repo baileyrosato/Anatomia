@@ -1,7 +1,7 @@
-.main-menu {
-  background-color: rgb(251, 248, 243);
+  .main-menu {
+    background-color: rgb(251,248,243);
   }
-  
+
   .main-menu h2 {
     margin-bottom: 20px;
     text-align: center;
