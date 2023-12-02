@@ -1,39 +1,39 @@
 // MainMenu.js
 
 // import react
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 
+// import firebase database
+import { firebase } from './config.js';
+
 import './MainMenu.css';
-
-
-// define the course data structure (TODO: This possibly needs to be stored 
-// in the database and retrieved instead of having a data structure here)
-const courseData = [
-  {
-    unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
-    subunits: ['Directional Terms', 'Subunit 1.2', 'Subunit 1.3']
-  },
-  {
-    unit: 'Unit 2: Coming Soon...',
-    subunits: ['Subunit 2.1', 'Subunit 2.2', 'Subunit 2.3']
-  },
-  {
-    unit: 'Unit 3: Coming Soon...',
-    subunits: ['Subunit 3.1', 'Subunit 3.2', 'Subunit 3.3']
-  },
-  {
-    unit: 'User Guide',
-    // TODO: decide on actual subsections lol
-    subunits: ['Getting Started', 'Navigating Application', 'Adjusting the Model']
-  },
-  // add more units as needed
-];
+import Nav from "./Navigation.js"
+import DownloadPDFButton from "./DownloadPDF.js"
 
 export default function MainMenu() {
 
   // use state to manage the expanded/collapsed state of units
+  const [courseData, setCourseData] = useState([]);
   const [expandedUnits, setExpandedUnits] = useState([]);
+
+  useEffect(() => {
+    // reference to the 'courseData' key in the database
+    const courseDataRef = firebase.database().ref('courseData');
+
+    // fetch course data from the database
+    courseDataRef.once('value')
+      .then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          setCourseData(Object.values(data));
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching course data from the database:', error);
+      });
+  }, []); // the empty dependency array ensures that this effect runs once on component mount
+
 
   // toggle the expanded state of a unit
   const toggleUnit = (unit) => {
@@ -50,6 +50,9 @@ export default function MainMenu() {
 
   return (
     <div className="main-menu">
+      <div className="Navigation">
+        <Nav />
+      </div>
       <h2>BIO201 Menu</h2>
       <ul>
         {courseData.map((course, index) => (
@@ -75,6 +78,9 @@ export default function MainMenu() {
           </li>
         ))}
       </ul>
+      <div className="downloadLink">
+        <DownloadPDFButton />
+      </div>
     </div>
   );
 }

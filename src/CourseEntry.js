@@ -26,7 +26,6 @@ export default function CourseEntry() {
     // submit the course code
     const handleSubmit = (event) => {
         event.preventDefault();
-        // TODO: check for correct course code 
         if(courseCode.toUpperCase() === "BIO201")
         {
             console.log("Course code is correct", courseCode)
