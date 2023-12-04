@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CourseEntry from "./CourseEntry.js";
 import MainMenu from "./MainMenu.js";
 import SubunitPage from "./SubunitPage.js"; 
+import UserGuide from './UserGuide.js';
 
 // import style sheet
 import './App.css';
@@ -18,6 +19,7 @@ export default function App() {
         <Route exact path="/" element={<CourseEntry />} />
         <Route path="/MainMenu" element={<MainMenu />} />
         <Route path="/course/:unit/:subunit" element={<SubunitPage />} />
+        <Route path="/user-guide" element={<UserGuide/>} /> 
       </Routes>
     </Router>
   )
