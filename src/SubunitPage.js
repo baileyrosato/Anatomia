@@ -82,6 +82,11 @@ export default function SubunitPage()
             <span className="slider"></span>
             <span className="label">Sphere</span>
           </label>
+          <div className="content-container">
+            <p> Content: </p> <br></br>
+            <p> The side of a 3D shape is the face.</p> <br></br>
+            <p> The edges of a 3D shape are where the faces meet</p>
+          </div>
         </div>
       </div>
     </div>
