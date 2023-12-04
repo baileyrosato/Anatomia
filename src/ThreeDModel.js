@@ -1,4 +1,6 @@
 // ThreeDModel.js
+// ThreeDModel.js
+// ThreeDModel.js
 
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -79,6 +81,34 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const canvas = renderer.domElement;
     canvasRef.current = canvas;
 
+    const exportToPNG = () => {
+      const canvas = canvasRef.current;
+      const link = document.createElement('a');
+      const renderer = new THREE.WebGLRenderer(); // Create a new renderer
+    
+      // Set the renderer size to match the canvas size
+      renderer.setSize(canvas.width, canvas.height);
+    
+      // Render the scene to the new renderer
+      renderer.render(scene, camera);
+    
+      // Convert the renderer's domElement to data URL
+      const dataURL = renderer.domElement.toDataURL('image/png');
+    
+      // Set the link href to the data URL
+      link.href = dataURL;
+    
+      // Set the link download attribute with a filename
+      link.download = '3d_model.png';
+    
+      // Simulate a click on the link to trigger the download
+      link.click();
+    };
+
+    // Add event listener to the export button
+    const exportButton = document.getElementById('exportButton');
+    exportButton.addEventListener('click', exportToPNG);
+
     controls.addEventListener('change', requestRenderIfNotRequested);
     window.addEventListener('resize', requestRenderIfNotRequested);
 
@@ -89,12 +119,14 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     return () => {
       container.removeChild(renderer.domElement);
       window.removeEventListener('resize', renderScene);
+      exportButton.removeEventListener('click', exportToPNG);
     };
   }, [width, selectedColor, shape]); // will need to update to run when variables change
 
   return(
     <div>
     <canvas ref={canvasRef} style={{ display: 'none' }} />
+    <button id="exportButton">Export to PNG</button>
     {/* ... (existing code) */}
   </div>
   ) 
@@ -112,3 +144,5 @@ function resizeRendererToDisplaySize(renderer) {
   }
   return needResize;
 }
+
+export{ThreeDModel}
