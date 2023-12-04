@@ -19,7 +19,7 @@ const courseData = [
   {
     unit: 'User Guide',
     // TODO: decide on actual subsections 
-    subunits: ['Getting Started', 'Navigating Application', 'Adjusting the Model']
+    subunits: ['User Guide Download']
   },
   // add more units as needed
 ];

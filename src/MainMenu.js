@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 import { firebase } from './config.js';
 
 import './MainMenu.css';
-import Nav from "./Navigation.js"
-import DownloadPDFButton from "./DownloadPDF.js"
+
 
 export default function MainMenu() {
 
@@ -50,26 +49,31 @@ export default function MainMenu() {
 
   return (
     <div className="main-menu">
-      <div className="Navigation">
-        <Nav />
-      </div>
       <h2>BIO201 Menu</h2>
       <ul>
         {courseData.map((course, index) => (
           <li key={index} className='unit-container'>
-            <span
-              // toggle the expanded state when clicked
-              onClick={() => toggleUnit(course.unit)}
-              className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
-            >
-               {expandedUnits.includes(course.unit) ? '▼ ' : '▶ '}
-              {course.unit}
-            </span>
-            {/* render subunits only if the unit is expanded */}
+            {course.unit !== "User Guide" ? (
+              <span
+                // toggle the expanded state when clicked
+                onClick={() => toggleUnit(course.unit)}
+                className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
+              >
+                {expandedUnits.includes(course.unit) ? '▼ ' : '▶ '}
+                {course.unit}
+              </span>
+            ) : (
+              <Link to="/user-guide" className="custom-link">
+              <span>
+                {course.unit}
+              </span>
+            </Link>
+            )}
+
             {expandedUnits.includes(course.unit) && (
               <ul>
                 {course.subunits.map((subunit, subIndex) => (
-                  <li key={subIndex} className='subunit-container'>
+                  <li key={subIndex} className="subunit-container">
                     <Link to={`/course/${course.unit}/${subunit}`}>{subunit}</Link>
                   </li>
                 ))}
@@ -78,9 +82,7 @@ export default function MainMenu() {
           </li>
         ))}
       </ul>
-      <div className="downloadLink">
-        <DownloadPDFButton />
-      </div>
+      
     </div>
   );
 }
