@@ -48,6 +48,30 @@ export default function SubunitPage()
         /></div>
         
         <div className="controls-container">
+        <div className="toggle-switch">
+          <label>
+            <span className="label">Cube</span>
+            <input
+              type="checkbox"
+              checked={currentShape === 'sphere'}
+              onChange={() => setCurrentShape(currentShape === 'cube' ? 'sphere' : 'cube')}
+            />
+            <span className="slider"></span>
+            <span className="label">Sphere</span>
+          </label>
+          </div>
+        <div className="control-group">
+            <label htmlFor="width-slider">Body Size:</label>
+            <input
+              id="width-slider"
+              type="range"
+              min="1"
+              max="5"
+              step="0.1"
+              value={width}
+              onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
+            />
+          </div>
           <div className="control-group">
             <label htmlFor="color-slider">Skin Tone:</label>
             <input
@@ -60,35 +84,11 @@ export default function SubunitPage()
               onChange={(e) => handleColorChange(parseFloat(e.target.value))}
             />
           </div>
-          <div className="control-group">
-            <label htmlFor="width-slider">Width:</label>
-            <input
-              id="width-slider"
-              type="range"
-              min="1"
-              max="5"
-              step="0.1"
-              value={width}
-              onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
-            />
-          </div>
-          <div className="toggle-switch">
-          <label>
-            <span className="label">Cube</span>
-            <input
-              type="checkbox"
-              checked={currentShape === 'sphere'}
-              onChange={() => setCurrentShape(currentShape === 'cube' ? 'sphere' : 'cube')}
-            />
-            <span className="slider"></span>
-            <span className="label">Sphere</span>
-          </label>
           <div className="content-container">
             <p> Content: </p> <br></br>
             <p> The side of a 3D shape is the face.</p> <br></br>
             <p> The edges of a 3D shape are where the faces meet</p>
           </div>
-        </div>
       </div>
     </div>
   </div>
