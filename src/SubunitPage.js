@@ -46,7 +46,6 @@ export default function SubunitPage()
           width={width}
           shape={currentShape}
         /></div>
-        
         <div className="controls-container">
         <div className="toggle-switch">
           <label>
