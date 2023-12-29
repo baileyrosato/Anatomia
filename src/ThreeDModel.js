@@ -1,9 +1,13 @@
 // ThreeDModel.js
 
+// import react
 import React, { useEffect, useRef } from 'react';
+// import three.js
 import * as THREE from 'three';
+// import controls
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-// import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+// import .gltf loader to display custom 3d file
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 
 export default function ThreeDModel({ unit, subunit, selectedColor, width, shape }) {  
@@ -20,82 +24,91 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const scene = new THREE.Scene();
 
     // add light to scene
-    const light = new THREE.PointLight(0xffffff, 1)
-    light.position.set(0, 0, 5)
-    scene.add(light)
+    const light = new THREE.AmbientLight(0xffffff); // soft white light
+    scene.add(light);
 
     // position the camera
-    const fov = 75;
+    const fov = 30;
     const aspect = window.innerWidth/window.innerHeight;
-    const near = 0.1;
-    const far = 5;
+    const near = 1;
+    const far = 50;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 2;
 
     // create web renderer
     const renderer = new THREE.WebGLRenderer();
+
+    // set background color
+    scene.background = new THREE.Color('black');
+
+    // position the camera
+    camera.position.set(0, 15, 20);
 
     // set renderer size and append it to the DOM
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
     container.appendChild(renderer.domElement);
 
+    // TODO: look into why clicking doesnt rotate model, it moves it around the canvas
     // initialize orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+    
     controls.target.set(0, 0, 0);
-    controls.update();
 
-    // const fbxLoader = new FBXLoader()
-    // fbxLoader.load(
-    //     '/3dModels/cone.fbx',
-    //     (object) => {
-    //         scene.add(object)
-    //         object.scale.set(2, 2, 2)
-    //     },
-    //     (error) => {
-    //         console.log(error)
-    //     }
-    // )
+    let Mesh;
 
-    // create 3D shape
-    let geometry;
-    if (shape === 'cube') {
-      geometry = new THREE.BoxGeometry(width, 1, 1);
-    } else if (shape === 'sphere') {
-      geometry = new THREE.SphereGeometry(width / 2, 32, 32);
-    }
+    // initialize loader
+    let loader = new GLTFLoader();
+
+    // load in custom file (located in public file)
+    loader.load('/untitled.gltf', (gltf) => {
+      Mesh = gltf.scene;
+      Mesh.scale.set(0.5,0.5,0.5);
+      scene.add(Mesh);
+      Mesh.position.x = 0;
+      Mesh.position.y = 10;
+      Mesh.position.z = 15;
+    });
+
+    // REMOVED: THIS IS FOR CUBE
+    // // create 3D shape
+    // let geometry;
+    // if (shape === 'cube') {
+    //   geometry = new THREE.BoxGeometry(width, 1, 1);
+    // } else if (shape === 'sphere') {
+    //   geometry = new THREE.SphereGeometry(width / 2, 32, 32);
+    // }
    
-    // set color 
-    const color1 = new THREE.Color('#ffdbac');
-    const color2 = new THREE.Color('#8d5524');
-    const dynamicColor = color1.clone().lerp(color2, selectedColor);
-    const material = new THREE.MeshBasicMaterial({ color: dynamicColor.getHex()});
+    // // set color 
+    // const color1 = new THREE.Color('#ffdbac');
+    // const color2 = new THREE.Color('#8d5524');
+    // const dynamicColor = color1.clone().lerp(color2, selectedColor);
+    // const material = new THREE.MeshBasicMaterial({ color: dynamicColor.getHex()});
 
-    // create shape and add to scene
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // // create shape and add to scene
+    // const cube = new THREE.Mesh(geometry, material);
+    // scene.add(cube);
 
-    // resize window
-    window.addEventListener('resize', onWindowResize, false)
+    // resize window based on screen size
+    window.addEventListener('resize', onWindowResize, false);
     function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(window.innerWidth *0.5, window.innerHeight *0.5)
-        render()
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth *0.5, window.innerHeight *0.5);
+        render();
     }
     
     // animate
     function animate() {
-      requestAnimationFrame(animate)
-      controls.update()
-      render()
+      requestAnimationFrame(animate);
+      controls.update();
+      render();
     }
   
     // render the scene
     function render() {
-      renderer.render(scene, camera)
+      renderer.render(scene, camera);
     }
-    animate()
+
+    animate();
 
     // function to export the scene to png
     const exportToPNG = () => {
@@ -126,13 +139,13 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const exportButton = document.getElementById('exportButton');
     exportButton.addEventListener('click', exportToPNG);
 
-    // clean up on component unmount
+    // clean up 
     return () => {
       container.removeChild(renderer.domElement);
       window.removeEventListener('resize', onWindowResize);
       exportButton.removeEventListener('click', exportToPNG);
     };
-  }, [width, selectedColor, shape]); // will need to update to run when variables change
+  }, [width, selectedColor, shape]); // scene will update whenever these variables change
 
   return(
     <div>

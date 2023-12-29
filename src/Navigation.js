@@ -1,14 +1,43 @@
 // Navigation.js
 
 // import react
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Navigation.css';
+import { Link } from 'react-router-dom';
+
+// import firebase database
+import { firebase } from './config.js';
 
 const HamburgerMenu = () => {
+  const [courseData, setCourseData] = useState([]);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [expandedUnits, setExpandedUnits] = useState([]);
+
+  useEffect(() => {
+    // get data from database
+    const fetchData = async () => {
+      try {
+        const snapshot = await firebase.database().ref('courseData').once('value');
+        const data = snapshot.val();
+        setCourseData(data);
+      } catch (error) {
+        console.error('Error fetching course data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+  };
+
+  // expand units to show subunit
+  const toggleUnit = (unit) => {
+    setExpandedUnits((prevExpandedUnits) =>
+      prevExpandedUnits.includes(unit)
+        ? prevExpandedUnits.filter((item) => item !== unit)
+        : [...prevExpandedUnits, unit]
+    );
   };
 
   return (
@@ -20,22 +49,37 @@ const HamburgerMenu = () => {
       </div>
       {isMenuOpen && (
         <div className="menu-items">
-          <a href="/MainMenu">Main Menu</a>
-          <a href="https://ceias.nau.edu/capstone/projects/CS/2024/Anatomia_F23/">About</a>
-          <a href="/course/Unit 1: Organs, Systems, and the Organization of the Body/Directional Terms">Unit 1: Directional Terms</a>
-          <a href="/course/Unit 1: Organs, Systems, and the Organization of the Body/Subunit 1.2">Unit 1: Subunit 1.2</a>
-          <a href="/course/Unit 1: Organs, Systems, and the Organization of the Body/Subunit 1.3">Unit 1: Subunit 1.3</a>
-          <a href="/course/Unit 2: Coming Soon.../Subunit 2.1">Unit 2: Subunit 2.1</a>
-          <a href="/course/Unit 2: Coming Soon.../Subunit 2.2">Unit 2: Subunit 2.2</a>
-          <a href="/course/Unit 2: Coming Soon.../Subunit 2.3">Unit 2: Subunit 2.3</a>
-          <a href="/course/Unit 3: Coming Soon.../Subunit 3.1">Unit 3: Subunit 3.1</a>
-          <a href="/course/Unit 3: Coming Soon.../Subunit 3.2">Unit 3: Subunit 3.2</a>
-          <a href="/course/Unit 3: Coming Soon.../Subunit 3.3">Unit 3: Subunit 3.3</a>
-          <a href="/user-guide">User Guide</a>
+          {courseData.map((course, index) => (
+            <li key={index}>
+              {course.unit !== "User Guide" ? (
+              <span
+                onClick={() => toggleUnit(course.unit)}
+                className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
+              >
+                {expandedUnits.includes(course.unit) ? '▼ ' : '▶ '}
+                {course.unit}
+              </span>
+              ) : (
+                <Link to="/user-guide" className="custom-link">
+                <span>
+                  {course.unit}
+                </span>
+              </Link>
+              )}
+              {expandedUnits.includes(course.unit) && (
+                <ul>
+                  {course.subunits.map((subunit, subIndex) => (
+                    <li key={subIndex}>
+                      <Link to={`/course/${course.unit}/${subunit}`}>{subunit}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              </li>
+          ))}
         </div>
       )}
     </div>
   );
 };
-
 export default HamburgerMenu;

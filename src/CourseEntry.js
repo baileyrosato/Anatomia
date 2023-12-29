@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom';
 // import css file
 import './CourseEntry.css';
 
-// other imports
-
-
 // define the course entry component
 export default function CourseEntry() {
 

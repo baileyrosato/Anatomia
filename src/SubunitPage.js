@@ -9,7 +9,6 @@ import './SubunitPage.css';
 import Menu from "./Navigation.js"
 import {ThreeDModel} from './ThreeDModel.js';
 
-
 export default function SubunitPage() 
 {
   // get the unit and subunit parameters
@@ -21,9 +20,9 @@ export default function SubunitPage()
   const handleColorChange = (value) => {
     setSelectedColor(value);
   };
-
+ 
   const handleWidthChange = (value) => {
-    setWidth(value);
+    setWidth(value); 
   };
 
   return (
@@ -32,7 +31,6 @@ export default function SubunitPage()
       <div className="HamburgerMenu">
         <Menu />
       </div>
-      {/*<canvas id="c"></canvas> */}
       <div className="cube-container">
         <div className="titles-container">
           <h2>{unit}</h2>
@@ -83,6 +81,7 @@ export default function SubunitPage()
               onChange={(e) => handleColorChange(parseFloat(e.target.value))}
             />
           </div>
+          {/*TODO: render content dynamically*/}
           <div className="content-container">
             <p> Content: </p> <br></br>
             <p> The side of a 3D shape is the face.</p> <br></br>
