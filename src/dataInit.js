@@ -3,10 +3,18 @@
 
 import {firebase} from "./config.js"
 
+// TODO: convert data struct to include descriptions and model
+
 const courseData = [
   {
     unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
     subunits: ['Directional Terms', 'Subunit 1.2', 'Subunit 1.3']
+    // unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
+    // subunits: [
+    //   {title:'Directional Terms', description: ''},
+    //   {title:'Subunit 1.2', description: ''},
+    //   {title:'Subunit 1.3', description: ''}
+    // ]
   },
   {
     unit: 'Unit 2: Coming Soon...',

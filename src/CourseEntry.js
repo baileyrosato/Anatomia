@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom';
 // import css file
 import './CourseEntry.css';
 
-// other imports
-
-
 // define the course entry component
 export default function CourseEntry() {
 
@@ -33,7 +30,7 @@ export default function CourseEntry() {
         }
         else
         {
-            console.log("Invalid course code")
+            window.alert("Incorrect course code.")
         }
       };
 
@@ -49,7 +46,7 @@ export default function CourseEntry() {
                 placeholder="Please enter course code"
               />
             </label>
-            <button type="submit" onClick ={handleSubmit}>Submit</button>
+            <button type="submit" onClick ={handleSubmit}>Login</button>
           </form>
         </div>
       );
