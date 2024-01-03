@@ -151,9 +151,11 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     <div>
     <canvas ref={canvasRef} style={{ display: 'none' }} />
     <button id="exportButton" style={{position:'absolute', bottom:-100, left: 20}}>Export to PNG</button>
+
     {/* ... (existing code) */}
   </div>
   ) 
 }
 
 export{ThreeDModel}
+

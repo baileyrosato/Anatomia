@@ -50,6 +50,7 @@ export default function SubunitPage()
             <p  style={{ position:'absolute', top: -50, right: 10}}> Biological</p>
             <p  style={{ position:'absolute', top: -50, left: 55}}> Sex</p>
             <span className="label" style={{position:'absolute', bottom: 10, right: 70}}>Male</span>
+
             <input
               type="checkbox"
               checked={currentShape === 'sphere'}
@@ -57,6 +58,7 @@ export default function SubunitPage()
             />
             <span className="slider"></span>
             <span className="label" style={{position:'absolute', bottom: 10, right: -60}}>Female</span>
+
           </label>
           </div>
         <div className="control-group">
