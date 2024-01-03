@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 // import css file
 import './CourseEntry.css';
 
-// other imports
-
+// import image
+import myImage from './images/Anatomy_Course_Image.jpg'
 
 // define the course entry component
 export default function CourseEntry() {
@@ -33,12 +33,17 @@ export default function CourseEntry() {
         }
         else
         {
-            console.log("Invalid course code")
+            window.alert("Incorrect course code.")
         }
       };
 
     // render the CourseEntry component to the screen
     return (
+      <div> 
+      <div className="Box"> 
+        <div>
+          <img src={myImage} alt="" class="responsive" />
+        </div>
         <div className="course-entry">
           <form onSubmit={handleSubmit}>
             <label>
@@ -49,8 +54,10 @@ export default function CourseEntry() {
                 placeholder="Please enter course code"
               />
             </label>
-            <button type="submit" onClick ={handleSubmit}>Submit</button>
+            <button type="submit" onClick ={handleSubmit}>Login</button>
           </form>
         </div>
+      </div>
+    </div>
       );
 }
