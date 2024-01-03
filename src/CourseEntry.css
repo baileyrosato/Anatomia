@@ -1,10 +1,25 @@
+.Box {
+  width: 1225px;
+  height: 500px;
+  border: 20px solid rgb(176, 168, 168);
+  opacity: 0.9;
+  margin-top: 60px;
+  margin-left: 50px;
+}
+
 .course-entry {
   max-width: 400px;
   margin: 0 auto;
   padding: 25px;
-  border: 1px solid rgb(251, 248, 243);
-  border-radius: 4px;
   text-align: right;
+  position: absolute;
+  margin-top: 10%;
+  margin-left: 200px;
+}
+
+.label {
+  position: inherit;
+  margin-top: 50%;
 }
 
 input {
@@ -19,6 +34,7 @@ input {
   ::placeholder {
       color: #d2c8bf;
   }
+
 }
 
 button {
@@ -34,4 +50,15 @@ button {
 
 button:hover {
   background-color: #b8ada4;
+}
+
+img {
+  float: right;
+  margin-top: 0.1px;
+  margin-right: 50px;
+}
+
+.responsive {
+  height: auto;
+  width: auto;
 }
