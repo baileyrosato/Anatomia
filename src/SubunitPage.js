@@ -16,6 +16,7 @@ export default function SubunitPage()
   const [selectedColor, setSelectedColor] = useState(0.5);
   const [width, setWidth] = useState(1);
   const [currentShape, setCurrentShape] = useState('cube');
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const handleColorChange = (value) => {
     setSelectedColor(value);
@@ -87,6 +88,17 @@ export default function SubunitPage()
             <p> The side of a 3D shape is the face.</p> <br></br>
             <p> The edges of a 3D shape are where the faces meet</p>
           </div>
+          <div className="help-icon" onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
+          ?
+        </div>
+        {showTooltip && (
+          <div className="tooltip">
+          <p>Controls:</p>
+          <p>- Rotate: Left Click + Drag</p>
+          <p>- Zoom: Scroll</p>
+          <p>- Pan: Right Click + Drag</p>
+        </div>
+        )}
       </div>
     </div>
   </div>
