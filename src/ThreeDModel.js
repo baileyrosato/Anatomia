@@ -9,7 +9,6 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 // import .gltf loader to display custom 3d file
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-
 export default function ThreeDModel({ unit, subunit, selectedColor, width, shape }) {  
 
   const canvasRef = useRef(null);
@@ -24,8 +23,16 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const scene = new THREE.Scene();
 
     // add light to scene
-    const light = new THREE.AmbientLight(0xffffff); // soft white light
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    const hemlight = new THREE.HemisphereLight(0xffffff, 1);
+    const backLight = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5,10,7);
+    hemlight.position.set(0,10,0);
+    hemlight.groundColor = new THREE.Color(0xffaa00)
+    backLight.position.set(-5,-10,-7);
     scene.add(light);
+    scene.add(hemlight);
+    scene.add(backLight);
 
     // position the camera
     const fov = 30;
@@ -38,34 +45,63 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const renderer = new THREE.WebGLRenderer();
 
     // set background color
-    scene.background = new THREE.Color('black');
-
-    // position the camera
-    camera.position.set(0, 15, 20);
+    scene.background = new THREE.Color('white');
 
     // set renderer size and append it to the DOM
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
     container.appendChild(renderer.domElement);
 
-    // TODO: look into why clicking doesnt rotate model, it moves it around the canvas
+    // TODO: set min and max zoom/pan 
     // initialize orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
-    
-    controls.target.set(0, 0, 0);
+    controls.target.set(0, 10, 10);
+    controls.minDistance = 1.5;
+    controls.maxDistance = 15;
 
+    // position the camera
+    camera.position.set(0, 10, 12);
+    controls.update();
+  
     let Mesh;
 
     // initialize loader
     let loader = new GLTFLoader();
 
     // load in custom file (located in public file)
-    loader.load('/untitled.gltf', (gltf) => {
+    loader.load('/anatomymodel.gltf', (gltf) => {
       Mesh = gltf.scene;
       Mesh.scale.set(0.5,0.5,0.5);
-      scene.add(Mesh);
+
+      // set model position
       Mesh.position.x = 0;
-      Mesh.position.y = 10;
-      Mesh.position.z = 15;
+      Mesh.position.y = 9.5;
+      Mesh.position.z = 10;
+
+      // set the target point for camera rotation
+      controls.target.set(0, 10, 10);
+
+      // iterate over all materials and set metallic to 0
+      Mesh.traverse((child) => {
+        if (child.isMesh) {
+          // assuming the material is MeshStandardMaterial
+          if (child.material.isMeshStandardMaterial) {
+            // set metalness to 0 so we can see model skin ton
+            child.material.metalness = 0;
+            // set a start and end color
+            const startColor = new THREE.Color("#ffdbac");
+            const endColor = new THREE.Color("#8d5524");
+          
+            // interpolate colors
+            const interpolatedColor = startColor.clone().lerp(endColor, selectedColor);
+          
+            // set the interpolated color to the material
+            child.material.color.copy(interpolatedColor);
+
+            child.material.needsUpdate = true;
+          }
+        }
+      });
+      scene.add(Mesh);
     });
 
     // REMOVED: THIS IS FOR CUBE
