@@ -1,4 +1,15 @@
 .downloadLink, .about-team-link {
     padding-top: 60px;
-    padding-left: 30px;
+    
+}
+
+.user-guide {
+    text-align: center;
+    align-items: center;
+}
+.user-guide-content {
+    max-width: 500px;
+    margin-left: 35%;
+    margin-right: 35%;
+    text-align: center;
 }
