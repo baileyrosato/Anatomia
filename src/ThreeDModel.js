@@ -45,7 +45,7 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const renderer = new THREE.WebGLRenderer();
 
     // set background color
-    scene.background = new THREE.Color('white');
+    scene.background = new THREE.Color('black');
 
     // set renderer size and append it to the DOM
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
