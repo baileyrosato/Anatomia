@@ -27,9 +27,9 @@ export default function UserGuide() {
         <div className="downloadLink">
             <DownloadPDFButton />
         </div>
-        <li className='about-team-link'>
+        <div className='about-team-link'>
           <a href="https://ceias.nau.edu/capstone/projects/CS/2024/Anatomia_F23/">About The Developers</a>
-        </li>
+        </div>
       </div>
     </div>
   );
