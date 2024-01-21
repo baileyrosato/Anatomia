@@ -29,14 +29,16 @@ export default function SubunitPage()
   return (
     <div className="subunit-page">
       {/* Hamburger menu */}
-      <div className="HamburgerMenu">
-        <Menu />
+      <div className="subunit-page-heading">
+        <div className="HamburgerMenu">
+          <Menu />
+        </div>
+        <div className="titles-container">
+            <h2>{unit}</h2>
+            <h3>{subunit}</h3>
+        </div>
       </div>
       <div className="cube-container">
-        <div className="titles-container">
-          <h2>{unit}</h2>
-          <h3>{subunit}</h3>
-        </div>
         <div className='threeD-model'>
           <ThreeDModel
           unit={unit}
@@ -46,7 +48,7 @@ export default function SubunitPage()
           shape={currentShape}
         /></div>
         <div className="controls-container">
-        <div className="toggle-switch">
+          <div className="toggle-switch">
           <label>
             <p  style={{ position:'absolute', top: -50, right: 10}}> Biological</p>
             <p  style={{ position:'absolute', top: -50, left: 55}}> Sex</p>
@@ -62,7 +64,7 @@ export default function SubunitPage()
 
           </label>
           </div>
-        <div className="control-group">
+          <div className="control-group">
             <label htmlFor="width-slider">Body Size:</label>
             <input
               id="width-slider"
@@ -94,15 +96,15 @@ export default function SubunitPage()
           </div>
           <div className="help-icon" onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
           ?
-        </div>
-        {showTooltip && (
-          <div className="tooltip">
-          <p>Controls:</p>
-          <p>- Rotate: Left Click + Drag</p>
-          <p>- Zoom: Scroll</p>
-          <p>- Pan: Right Click + Drag</p>
-        </div>
-        )}
+          </div>
+          {showTooltip && (
+            <div className="tooltip">
+            <p>Controls:</p>
+            <p>- Rotate: Left Click + Drag</p>
+            <p>- Zoom: Scroll</p>
+            <p>- Pan: Right Click + Drag</p>
+            </div>
+          )}
       </div>
     </div>
   </div>
