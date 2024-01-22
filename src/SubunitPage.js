@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 // import other pages
 import './SubunitPage.css';
 import Menu from "./Navigation.js"
-import {ThreeDModel} from './ThreeDModel.js';
+import ThreeDModel from './ThreeDModel.js';
 
 export default function SubunitPage() 
 {
@@ -44,6 +44,7 @@ export default function SubunitPage()
           selectedColor={selectedColor}
           width={width}
           shape={currentShape}
+          onColorChange={handleColorChange}
         /></div>
         <div className="controls-container">
         <div className="toggle-switch">

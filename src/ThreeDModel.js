@@ -51,7 +51,6 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
     container.appendChild(renderer.domElement);
 
-    // TODO: set min and max zoom/pan 
     // initialize orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 10, 10);
@@ -68,7 +67,7 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     let loader = new GLTFLoader();
 
     // load in custom file (located in public file)
-    loader.load('/anatomymodel.gltf', (gltf) => {
+    loader.load('/model_files/anatomymodel.gltf', (gltf) => {
       Mesh = gltf.scene;
       Mesh.scale.set(0.5,0.5,0.5);
 
@@ -87,6 +86,7 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
           if (child.material.isMeshStandardMaterial) {
             // set metalness to 0 so we can see model skin ton
             child.material.metalness = 0;
+            
             // set a start and end color
             const startColor = new THREE.Color("#ffdbac");
             const endColor = new THREE.Color("#8d5524");
@@ -103,25 +103,6 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
       });
       scene.add(Mesh);
     });
-
-    // REMOVED: THIS IS FOR CUBE
-    // // create 3D shape
-    // let geometry;
-    // if (shape === 'cube') {
-    //   geometry = new THREE.BoxGeometry(width, 1, 1);
-    // } else if (shape === 'sphere') {
-    //   geometry = new THREE.SphereGeometry(width / 2, 32, 32);
-    // }
-   
-    // // set color 
-    // const color1 = new THREE.Color('#ffdbac');
-    // const color2 = new THREE.Color('#8d5524');
-    // const dynamicColor = color1.clone().lerp(color2, selectedColor);
-    // const material = new THREE.MeshBasicMaterial({ color: dynamicColor.getHex()});
-
-    // // create shape and add to scene
-    // const cube = new THREE.Mesh(geometry, material);
-    // scene.add(cube);
 
     // resize window based on screen size
     window.addEventListener('resize', onWindowResize, false);
