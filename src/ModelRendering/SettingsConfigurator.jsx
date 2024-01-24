@@ -4,12 +4,10 @@ import {
   useCharacterCustomization,
 } from "./CharacterCustomizationContext.jsx";
 
-export const HeadConfigurator = () => {
+export const SettingsConfigurator = () => {
   const {
     skinColor,
     setSkinColor,
-    bodySize,
-    setBodySize,
   } = useCharacterCustomization();
 
   return (

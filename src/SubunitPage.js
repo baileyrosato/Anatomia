@@ -1,13 +1,10 @@
 // SubunitPage.js
 
-import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
-import ReactDOM from "react-dom";
-import ModelPage from "./ModelPage.js";
-import Interface from './Interface.jsx';
-import { CharacterAnimationsProvider } from "./CharacterAnimations.jsx";
-import { CharacterCustomizationProvider } from "./CharacterCustomizationContext.jsx";
+import ModelPage from "./ModelRendering/ModelPage.js";
+import { CharacterAnimationsProvider } from "./ModelRendering/CharacterAnimations.jsx";
+import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
 
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
@@ -44,11 +41,8 @@ export default function SubunitPage() {
             <h3>{subunit}</h3>
           </div>
         </div>
-         {/* Render the Model Settings button */}
-         <Interface />
         <CharacterCustomizationProvider>
           <CharacterAnimationsProvider>
-            {/* Render the 3D model here */}
             <div className="model-container">
               <ModelPage />
             </div>

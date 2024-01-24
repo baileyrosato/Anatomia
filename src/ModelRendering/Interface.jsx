@@ -1,6 +1,6 @@
 import { Affix, Button, Group } from "@mantine/core";
 import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
-import { HeadConfigurator } from "./HeadConfigurator";
+import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
 
 import "./Interface.css"; // import style sheet
 
@@ -21,7 +21,7 @@ const Interface = () => {
         </Group>
 
         <Affix position={{ top: 200, left: 50 }}>
-          {headConfiguratorOpen && <HeadConfigurator />}
+          {headConfiguratorOpen && <SettingsConfigurator />}
         </Affix>
       </Affix>
       {/* ... Other components ... */}

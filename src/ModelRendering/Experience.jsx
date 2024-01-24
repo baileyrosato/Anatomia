@@ -1,9 +1,7 @@
-import { useThree } from "@react-three/fiber";
 import { CameraControls } from "./CameraControls.jsx";
 import Anatomymodel from "./Anatomymodel.jsx";
 
 const Experience = () => {
-  const gl = useThree((state) => state.gl);
   return (
     <>
       <CameraControls />
