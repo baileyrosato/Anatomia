@@ -3,21 +3,19 @@ body {
 }
 
 .titles-container {
-  margin: 10px;
+  margin-left: 50px;
   text-align: center; 
 }
 
-.titles-container {
-  margin: 10px;
-  text-align: center; 
-}
 
 h2, h3 {
   text-align: center; 
 }
 
-.threeD-model{
-  position:absolute;
+.model-container {
+  width: 75%; /* Adjust the width as needed */
+  height: 75vh; /* Adjust the height as needed */
+  /* Add any other styling properties you want */
 }
 
 .controls-container {
