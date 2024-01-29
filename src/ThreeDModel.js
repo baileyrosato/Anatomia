@@ -45,13 +45,12 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     const renderer = new THREE.WebGLRenderer();
 
     // set background color
-    scene.background = new THREE.Color('white');
+    scene.background = new THREE.Color('lightgrey');
 
     // set renderer size and append it to the DOM
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
     container.appendChild(renderer.domElement);
 
-    // TODO: set min and max zoom/pan 
     // initialize orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 10, 10);
@@ -68,7 +67,7 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
     let loader = new GLTFLoader();
 
     // load in custom file (located in public file)
-    loader.load('/anatomymodel.gltf', (gltf) => {
+    loader.load('/model_files/anatomymodel.gltf', (gltf) => {
       Mesh = gltf.scene;
       Mesh.scale.set(0.5,0.5,0.5);
 
@@ -80,6 +79,8 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
       // set the target point for camera rotation
       controls.target.set(0, 10, 10);
 
+      scene.add(Mesh);
+
       // iterate over all materials and set metallic to 0
       Mesh.traverse((child) => {
         if (child.isMesh) {
@@ -87,6 +88,7 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
           if (child.material.isMeshStandardMaterial) {
             // set metalness to 0 so we can see model skin ton
             child.material.metalness = 0;
+            
             // set a start and end color
             const startColor = new THREE.Color("#ffdbac");
             const endColor = new THREE.Color("#8d5524");
@@ -95,16 +97,13 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
             const interpolatedColor = startColor.clone().lerp(endColor, selectedColor);
           
             // set the interpolated color to the material
-            child.material.color.copy(interpolatedColor);
-
-            child.material.needsUpdate = true;
+            child.material.color.set(interpolatedColor);
           }
         }
       });
-      scene.add(Mesh);
     });
 
-    // REMOVED: THIS IS FOR CUBE
+        // REMOVED: THIS IS FOR CUBE
     // // create 3D shape
     // let geometry;
     // if (shape === 'cube') {
@@ -148,26 +147,22 @@ export default function ThreeDModel({ unit, subunit, selectedColor, width, shape
 
     // function to export the scene to png
     const exportToPNG = () => {
-      const canvas = canvasRef.current;
+      
       const link = document.createElement('a');
-      const renderer = new THREE.WebGLRenderer(); // Create a new renderer
-    
-      // Set the renderer size to match the canvas size
-      renderer.setSize(canvas.width, canvas.height);
-    
-      // Render the scene to the new renderer
+
+      // render the scene to the existing renderer and canvas
       renderer.render(scene, camera);
     
-      // Convert the renderer's domElement to data URL
+      // convert the renderer's domElement to data URL
       const dataURL = renderer.domElement.toDataURL('image/png');
     
-      // Set the link href to the data URL
+      // set the link href to the data URL
       link.href = dataURL;
     
-      // Set the link download attribute with a filename
+      // give it a file name
       link.download = '3d_model.png';
     
-      // Simulate a click on the link to trigger the download
+      // simulate a click on the link to trigger the download
       link.click();
     };
 

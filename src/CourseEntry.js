@@ -42,19 +42,19 @@ export default function CourseEntry() {
       <div> 
       <div className="Box"> 
         <div>
-          <img src={myImage} alt="" class="responsive" />
+          <img src={myImage} alt="" className="responsive" />
         </div>
         <div className="course-entry">
           <form onSubmit={handleSubmit}>
             <label>
-              <input
+              <input className="code-input"
                 type="text"
                 value={courseCode}
                 onChange={handleInputChange}
                 placeholder="Please enter course code"
               />
             </label>
-            <button type="submit" onClick ={handleSubmit}>Login</button>
+            <button className='login-button' type="submit" onClick ={handleSubmit}>Login</button>
           </form>
         </div>
       </div>
