@@ -1,22 +1,20 @@
 /*CourseEntry.css*/
 
 .Box {
-  width: 1225px;
-  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
   border: 20px solid rgb(176, 168, 168);
   opacity: 0.9;
-  margin-top: 60px;
-  margin-left: 50px;
+  margin: 60px;
 }
 
 .course-entry {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 25px;
-  text-align: right;
-  position: absolute;
-  margin-top: 10%;
-  margin-left: 200px;
+  flex: 1; /* Takes the remaining space */
+  padding: 20px; /* Adjust as needed */
+  display:inline;
+
 }
 
 .label {
@@ -25,9 +23,9 @@
 }
 
 .code-input {
-  width: 100%;
+  width: 50%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
   background-color: #182858;
   color: white;
   border: none;
@@ -42,25 +40,19 @@
 .login-button {
   background-color: #d2c8bf;
   color: #182858;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  max-width: 100px;
-  min-height: 25px;
 }
 
 .login-button:hover {
   background-color: #b8ada4;
 }
 
-img {
-  float: right;
-  margin-top: 0.1px;
-  margin-right: 50px;
-}
+.entry-image {
+  width: 75%; /* Adjust as needed */
+  height: 75%; /* Adjust as needed */
+  order: 1; /* Change the order to 1 to move it to the right */
 
-.responsive {
-  height: auto;
-  width: auto;
 }

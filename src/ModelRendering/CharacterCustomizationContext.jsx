@@ -8,31 +8,31 @@ export const CameraModes = {
 
 // colors for skin tone picker
 export const SwatchesColors = [
-  "#D8bba9",
+  "#f3e7db",
+  "#f7ead0",
+  "#d8bba9",
+  "#eadaba",
+  "#d7bd96",
   "#d6aa8d",
   "#c78d75",
+  "#a07e56",
+  "#825c43",
   "#96634e",
+  "#604134",
   "#664d48",
-  "#3a3d36",
-  "#4c6ef5",
-  "#228be6",
-  "#15aabf",
-  "#12b886",
-  "#40c057", 
   "#643805",
   "#361e02",
-  "#2e1a02",
 ];
 
 export const CharacterCustomizationProvider = ({ children }) => {
   
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.HEAD);
-  const [skinColor, setSkinColor] = useState("#cdcdcd");
+  const [skinColor, setSkinColor] = useState("#ffffff");
   const [morphTargetDictionary, setMorphTargetDictionary] = useState([]);
   const [morphTargetInfluences, setMorphTargetInfluences] = useState([]);
   const [bodySize, setBodySize] = useState(50); // Set an initial body size
-
+  const [selectedGender, setGender] = useState("male"); 
   return (
     <CharacterCustomizationContext.Provider
       value={{
@@ -44,6 +44,8 @@ export const CharacterCustomizationProvider = ({ children }) => {
         setSkinColor,
         bodySize,
         setBodySize,
+        selectedGender,
+        setGender,
         morphTargetDictionary,
         setMorphTargetDictionary,
         morphTargetInfluences,
