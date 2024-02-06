@@ -18,7 +18,6 @@ const Experience = () => {
       <mesh
         rotation={[-0.5 * Math.PI, 0, 0]}
         position={[0, -1, 0]}
-        receiveShadow
       >
       </mesh>
     </>
