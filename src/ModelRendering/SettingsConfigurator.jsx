@@ -16,7 +16,7 @@ export const SettingsConfigurator = () => {
     setBodySize,
   } = useCharacterCustomization();
 
-  // temp event for body size
+  // sets body size value
   const handleChange = (event) => {
     setBodySize(event.target.value);
   };
@@ -62,6 +62,8 @@ export const SettingsConfigurator = () => {
           <MenuItem value={1}>Body 1</MenuItem>
           <MenuItem value={2}>Body 2</MenuItem>
           <MenuItem value={3}>Body 3</MenuItem>
+          <MenuItem value={4}>Body 4</MenuItem>
+          <MenuItem value={5}>Body 5</MenuItem>
         </Select>
         </FormControl>
         </div>
