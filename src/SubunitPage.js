@@ -57,11 +57,11 @@ export default function SubunitPage() {
          <div className="unit-content-container">
             <div className="unit-content">
               {/* Add your unit content here */}
-              In clinical settings, it is important to have a standard frame of reference. 
-              Anatomical position refers to the starting point and is a reference point that ensures everyone is speaking about the same side or part of the body. 
-              Anatomical position is always in reference to the patient. In anatomical position, the patient's body is upright, facing forward, arms straight 
+              In clinical settings, it is important to have a standard frame of reference. <br/>
+              <strong>Anatomical position</strong> refers to the starting point and is a reference point that ensures everyone is speaking about the same side or part of the body. <br/>
+              Anatomical position is <strong>always in reference to the patient</strong>. In anatomical position, the patient's body is upright, facing forward, arms straight 
               and down at the patient's side with palms facing forward, legs straight, feet flat on the ground, and eyes open. <br/><br/>
-              Thinking Question: Do you think the model shown is in anatomical position? Why or why not?
+              <strong>Thinking Question:</strong> Do you think the model shown is in anatomical position? Why or why not?
             </div>
           </div>
       </div>
