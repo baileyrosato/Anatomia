@@ -4,10 +4,18 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 
+// import material UI 
+import { List } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { ListItemText } from '@mui/material';
+import { Collapse } from '@mui/material';
+import { ExpandLess } from '@mui/icons-material';
+import { ExpandMore } from '@mui/icons-material';
+
 // import firebase database
 import { firebase } from './config.js';
 
-import './MainMenu.css';
+// import './MainMenu.css';
 
 
 export default function MainMenu() {
@@ -35,54 +43,50 @@ export default function MainMenu() {
 
 
   // toggle the expanded state of a unit
-  const toggleUnit = (unit) => {
-  if (expandedUnits.includes(unit)) 
-    {
-      setExpandedUnits(expandedUnits.filter((item) => item !== unit));
-    } 
-  else 
-    {
-        setExpandedUnits([...expandedUnits, unit]);
-    }
+  const toggleUnit = (unit) =>  {
+    setExpandedUnits((prevExpandedUnits) => {
+      // tracks if the unit has already been expanded
+      const isUnitExpanded = prevExpandedUnits.includes(unit);
+      return isUnitExpanded
+        ? prevExpandedUnits.filter((item) => item !== unit)
+        : [...prevExpandedUnits, unit];
+    });
   };
-
-
-  return (
-    <div className="main-menu">
+ 
+    return (
+      <div className="main-menu">
       <h2>BIO201 Menu</h2>
-      <ul>
+      <List>
         {courseData.map((course, index) => (
-          <li key={index} className='unit-container'>
-            {course.unit !== "User Guide" ? (
-              <span
-                // toggle the expanded state when clicked
-                onClick={() => toggleUnit(course.unit)}
-                className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
-              >
-                {expandedUnits.includes(course.unit) ? '▼ ' : '▶ '}
-                {course.unit}
-              </span>
-            ) : (
-              <Link to="/user-guide" className="custom-link">
-              <span>
-                {course.unit}
-              </span>
-            </Link>
-            )}
+          // create a container for the unit info
+          <div key={index} className='unit-container'> 
+            <ListItem 
+              // on click function to toggle unit
+              // button is depracted but allows highlighting of unit when click
+              button 
+              onClick={() => toggleUnit(course.unit)}
+              // check if the current unit is expanded 
+              className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
+            >
+              <ListItemText primary={course.unit} />
+              {expandedUnits.includes(course.unit) ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
 
-            {expandedUnits.includes(course.unit) && (
-              <ul>
+            <Collapse in={expandedUnits.includes(course.unit)} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
                 {course.subunits.map((subunit, subIndex) => (
-                  <li key={subIndex} className="subunit-container">
-                    <Link to={`/course/${course.unit}/${subunit}`}>{subunit}</Link>
-                  </li>
+                  // create a unit for the subunit info
+                  <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
+                    <Link to={`/course/${course.unit}/${subunit}`}>
+                      <ListItemText primary={subunit} />
+                    </Link>
+                  </ListItem>
                 ))}
-              </ul>
-            )}
-          </li>
+              </List>
+            </Collapse>
+          </div>
         ))}
-      </ul>
-      
+      </List>
     </div>
   );
 }
