@@ -8,26 +8,72 @@ import {firebase} from "./config.js"
 const courseData = [
   {
     unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
-    subunits: ['Directional Terms', 'Subunit 1.2', 'Subunit 1.3']
-    // unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
-    // subunits: [
-    //   {title:'Directional Terms', description: ''},
-    //   {title:'Subunit 1.2', description: ''},
-    //   {title:'Subunit 1.3', description: ''}
-    // ]
+    subunits: [  
+      {
+        title:'Anatomical Position', 
+        description: "In clinical settings, it is important to have a standard frame of reference. Anatomical position refers to the starting point and is a reference point that ensures everyone is speaking about the same side or part of the body. Anatomical position is always in reference to the patient. In anatomical position, the patient's body is upright, facing forward, arms straight and down at the patient's side with palms facing forward, legs straight, feet flat on the ground, and eyes open. Thinking Question: Do you think the model shown is in anatomical position? Why or why not?"
+      },
+      {
+        title:'Directional Terms', 
+        description: ''
+      },
+      {
+        title:'Planes of Sectioning',
+        description: ''
+      },
+      {
+        title:'Body Cavities', 
+        description: ''
+      },
+      {
+        title:'Regions of the Body', 
+        description: ''
+      }
+    ]
   },
   {
     unit: 'Unit 2: Coming Soon...',
-    subunits: ['Subunit 2.1', 'Subunit 2.2', 'Subunit 2.3']
+    subunits: [
+      {
+        title:'Subunit 2.1', 
+        description: ""
+      },
+      {
+        title:'Subunit 2.2', 
+        description: ""
+      },
+      {
+        title:'Subunit 2.3', 
+        description: ""
+      }
+    ]
   },
   {
     unit: 'Unit 3: Coming Soon...',
-    subunits: ['Subunit 3.1', 'Subunit 3.2', 'Subunit 3.3']
+    subunits: [
+      {
+        title:'Subunit 3.1', 
+        description: ""
+      },
+      {
+        title:'Subunit 3.2', 
+        description: ""
+      },
+      {
+        title:'Subunit 3.3', 
+        description: ""
+      }
+    ]
   },
   {
     unit: 'User Guide',
     // TODO: decide on actual subsections 
-    subunits: ['User Guide Download']
+    subunits: [
+      {
+      title:'User Guide Download',
+      description: ""
+      }
+    ]
   },
   // add more units as needed
 ];
