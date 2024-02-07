@@ -2,7 +2,7 @@ body {
   background-color: rgb(251, 248, 243);
 }
 
-.titles-container {
+.unit-titles-container {
   margin-left: 50px;
   text-align: center; 
 }
@@ -14,7 +14,7 @@ h2, h3 {
 
 .model-container {
   width: 75%; /* Adjust the width as needed */
-  height: 75vh; /* Adjust the height as needed */
+  height: 65vh; /* Adjust the height as needed */
   /* Add any other styling properties you want */
 }
 
@@ -28,18 +28,23 @@ h2, h3 {
 
 }
 
+.unit-content-container {
+  height: 200px; /* Adjust the height as needed */
+  overflow-y: auto;
+  margin-top: 50px;
+  border: 2px solid #ccc; /* Border color and width */
+  border-radius: 10px; /* Adjust the border radius for rounded corners */
+}
+
+.unit-content {
+  padding: 20px; /* Add padding inside the box */
+}
+
 .control-group {
   margin-bottom: 15px;
   width:50%;
 }
 
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  align-items: flex-start;
-  width: 60px;
-  height: 34px;
-}
 
 .toggle-switch label {
   display: flex;
