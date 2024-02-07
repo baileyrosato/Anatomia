@@ -14,6 +14,7 @@ export default function SubunitPage() {
   const { unit, subunit } = useParams();
 
   return (
+  <CharacterCustomizationProvider>
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
@@ -41,14 +42,14 @@ export default function SubunitPage() {
             <h3>{subunit}</h3>
           </div>
         </div>
-        <CharacterCustomizationProvider>
+        
           <CharacterAnimationsProvider>
             <div className="model-container">
               <ModelPage />
             </div>
           </CharacterAnimationsProvider>
-        </CharacterCustomizationProvider>
       </div>
     </MantineProvider>
+    </CharacterCustomizationProvider>
   );
 }

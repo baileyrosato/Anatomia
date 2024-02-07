@@ -42,7 +42,7 @@ export default function CourseEntry() {
       <div> 
       <div className="Box"> 
         <div>
-          <img src={myImage} alt="" className="responsive" />
+          <img className = "entry-image" src={myImage} alt="" />
         </div>
         <div className="course-entry">
           <form onSubmit={handleSubmit}>
