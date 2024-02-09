@@ -60,33 +60,46 @@ export default function MainMenu() {
         {courseData.map((course, index) => (
           // create a container for the unit info
           <div key={index} className='unit-container'> 
-            <ListItem 
-              // on click function to toggle unit
-              // button is depracted but allows highlighting of unit when click
-              button 
-              onClick={() => toggleUnit(course.unit)}
-              // check if the current unit is expanded 
-              className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
-            >
-              <ListItemText primary={course.unit} />
-              {expandedUnits.includes(course.unit) ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-
-            <Collapse in={expandedUnits.includes(course.unit)} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {course.subunits.map((subunit, subIndex) => (
-                  // create a unit for the subunit info
-                  <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
-                    <Link to={`/course/${course.unit}/${subunit.title}`}>
-                      <ListItemText primary={subunit.title} />
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
-            </Collapse>
-          </div>
-        ))}
-      </List>
-    </div>
-  );
+             {/* check if the current unit is not the user guide */}
+             {course.unit !== "User Guide" ? (
+              // If not the user guide, render as a normal unit
+              <React.Fragment>
+                <ListItem 
+                  // on click function to toggle unit
+                  // button is deprecated but allows highlighting of unit when click
+                  button 
+                  onClick={() => toggleUnit(course.unit)}
+                  // check if the current unit is expanded 
+                  className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
+                >
+                  <ListItemText primary={course.unit} />
+                  {expandedUnits.includes(course.unit) ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+  
+                <Collapse in={expandedUnits.includes(course.unit)} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {course.subunits.map((subunit, subIndex) => (
+                      // create a unit for the subunit info
+                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
+                        <Link to={`/course/${course.unit}/${subunit.title}`}>
+                          <ListItemText primary={subunit.title} />
+                        </Link>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </React.Fragment>
+            ) : (
+              // if user guide, direct the user to user guide page
+              <div style={{ width: '100px' }}>
+                <Link to="/user-guide" className="custom-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemText primary={course.unit} style={{ marginLeft: '16px' }} />
+                </Link>
+              </div>
+        )}
+      </div>
+    ))}
+  </List>
+</div>
+);
 }
