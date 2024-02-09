@@ -81,8 +81,8 @@ export default function MainMenu() {
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
                       <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
-                        <Link to={`/course/${course.unit}/${subunit}`}>
-                          <ListItemText primary={subunit} />
+                        <Link to={`/course/${course.unit}/${subunit.title}`}>
+                          <ListItemText primary={subunit.title} />
                         </Link>
                       </ListItem>
                     ))}

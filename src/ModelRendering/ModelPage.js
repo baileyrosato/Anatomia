@@ -7,7 +7,7 @@ function ModelPage() {
     return (
       <>
         <Canvas
-          camera={{ position: [1, 1.5, 2.5], fov: 50 }}
+          camera={{ position: [1, 1, 3], fov: 35 }}
           shadows
           gl={{ preserveDrawingBuffer: true }}
         >

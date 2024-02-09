@@ -17,7 +17,7 @@ const Interface = () => {
           Rotate: left click and drag <br />
           Pan: right click and drag
         </span>
-      } placement="bottom">
+      } placement="top">
         <IconButton>
           <QuestionMark/>
         </IconButton>
