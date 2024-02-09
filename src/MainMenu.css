@@ -12,6 +12,7 @@
 .main-menu ul {
   list-style-type: none;
   padding: 0;
+  margin: 12px;
   background-color: rgb(251, 248, 243);
 }
 
@@ -27,9 +28,4 @@
   margin-left: 20px;
   padding: 10px;
   background-color: rgb(251, 248, 243);
-}
-
-.custom-link {
-  color: black;
-  text-decoration: none;
 }
