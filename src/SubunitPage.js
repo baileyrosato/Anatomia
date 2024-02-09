@@ -1,5 +1,5 @@
 // SubunitPage.js
-
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
@@ -9,10 +9,49 @@ import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustom
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
 
+import { firebase } from './config.js';
+
 export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
+  const [subunitDescription, setSubunitDescription] = useState("");
 
+  useEffect(() => {
+    setSubunitDescription("");
+    // fetch courseData from database
+    const courseDataRef = firebase.database().ref('courseData');
+    courseDataRef.once('value')
+      .then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          // find the index of the unit
+          const foundUnitIndex = data.findIndex((course) => course.unit === unit);
+        
+          // find the index of the subunit within the unit
+          const foundSubunitIndex = data[foundUnitIndex]?.subunits.findIndex((sub) => sub.title === subunit);
+
+          // fetch subunit description from database using the indices
+          if (foundUnitIndex !== -1 && foundSubunitIndex !== -1) {
+            const subunitRef = firebase.database().ref(`courseData/${foundUnitIndex}/subunits/${foundSubunitIndex}/description`);
+            subunitRef.once('value')
+              .then((snapshot) => {
+                const description = snapshot.val();
+                if (description) {
+                  setSubunitDescription(description); 
+                }
+              })
+              .catch((error) => {
+                console.error('Error fetching subunit description from the database:', error);
+              });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching course data from the database:', error);
+      });
+  }, [unit, subunit]); // fetch description whenever unit or subunit changes
+
+  
   return (
   <CharacterCustomizationProvider>
     <MantineProvider
@@ -56,12 +95,7 @@ export default function SubunitPage() {
          {/* Embedded container with scrollbar */}
          <div className="unit-content-container">
             <div className="unit-content">
-              {/* Add your unit content here */}
-              In clinical settings, it is important to have a standard frame of reference. <br/>
-              <strong>Anatomical position</strong> refers to the starting point and is a reference point that ensures everyone is speaking about the same side or part of the body. <br/>
-              Anatomical position is <strong>always in reference to the patient</strong>. In anatomical position, the patient's body is upright, facing forward, arms straight 
-              and down at the patient's side with palms facing forward, legs straight, feet flat on the ground, and eyes open. <br/><br/>
-              <strong>Thinking Question:</strong> Do you think the model shown is in anatomical position? Why or why not?
+              {subunitDescription}
             </div>
           </div>
       </div>

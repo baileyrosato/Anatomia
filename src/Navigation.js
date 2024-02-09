@@ -70,7 +70,7 @@ const HamburgerMenu = () => {
                 <ul>
                   {course.subunits.map((subunit, subIndex) => (
                     <li key={subIndex}>
-                      <Link to={`/course/${course.unit}/${subunit}`}>{subunit}</Link>
+                      <Link to={`/course/${course.unit}/${subunit.title}`}>{subunit.title}</Link>
                     </li>
                   ))}
                 </ul>
