@@ -13,13 +13,19 @@ export default function CourseEntry() {
     setCourseCode(event.target.value);
   };
 
+  // submit the course code
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (courseCode.toUpperCase() === "BIO201") {
-      console.log("Course code is correct", courseCode);
-      navigate('/MainMenu');
-    } else {
-      window.alert("Incorrect course code.");
+    if(courseCode.toUpperCase() === "BIO201")
+    {
+        console.log("Course code is correct", courseCode)
+        navigate('/MainMenu');
+    }
+    else
+    {
+      window.alert("Incorrect course code. Re-enter course code")
+      setCourseCode("");
+
     }
   };
 

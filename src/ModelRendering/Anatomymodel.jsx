@@ -8,12 +8,40 @@ import { useGLTF } from '@react-three/drei';
 import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
 
 function Anatomymodel (props) {
-  const { skinColor, selectedGender} = useCharacterCustomization();
+  const { skinColor, selectedGender, bodySize} = useCharacterCustomization();
 
   // get the correct model file (TODO: update!)
   const modelPath = useMemo(() => {
-    return selectedGender === 'female' ? '/model_files/femaleCaucasian01.gltf' : '/model_files/maleCaucasian.gltf';
-  }, [selectedGender]);
+    let path="";
+    if(selectedGender === 'female')
+    {
+      if (bodySize === 1) {
+        path = '/model_files/femaleCaucasian01.gltf';
+      } else if (bodySize === 2) {
+        path = '/model_files/femaleCaucasian02.gltf';
+      } else if (bodySize === 3) {
+        path = '/model_files/femaleCaucasian03.gltf';
+      } else if (bodySize === 4) {
+        path = '/model_files/femaleCaucasian04.gltf';
+      } else if (bodySize === 5) {
+        path = '/model_files/femaleCaucasian05.gltf';
+      }
+    }
+    else {
+      if (bodySize === 1) {
+        path = '/model_files/maleCaucasian01.gltf';
+      } else if (bodySize === 2) {
+        path = '/model_files/maleCaucasian02.gltf';
+      } else if (bodySize === 3) {
+        path = '/model_files/maleCaucasian03.gltf';
+      } else if (bodySize === 4) {
+        path = '/model_files/maleCaucasian04.gltf';
+      } else if (bodySize === 5) {
+        path = '/model_files/maleCaucasian05.gltf';
+      }
+    }
+    return path;
+  }, [selectedGender, bodySize]);
 
   const { nodes, materials } = useGLTF(modelPath);
 

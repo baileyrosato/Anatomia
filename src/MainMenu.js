@@ -53,15 +53,15 @@ export default function MainMenu() {
     });
   };
  
-    return (
-      <div className="main-menu">
+  return (
+    <div className="main-menu">
       <h2>BIO201 Menu</h2>
       <List>
         {courseData.map((course, index) => (
           // create a container for the unit info
           <div key={index} className='unit-container'> 
-             {/* check if the current unit is not the user guide */}
-             {course.unit !== "User Guide" ? (
+            {/* check if the current unit is not the user guide */}
+            {course.unit !== "User Guide" ? (
               // If not the user guide, render as a normal unit
               <React.Fragment>
                 <ListItem 
