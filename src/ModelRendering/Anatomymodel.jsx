@@ -28,7 +28,17 @@ function Anatomymodel (props) {
       }
     }
     else {
-      path = '/model_files/maleCaucasian.gltf';
+      if (bodySize === 1) {
+        path = '/model_files/maleCaucasian01.gltf';
+      } else if (bodySize === 2) {
+        path = '/model_files/maleCaucasian02.gltf';
+      } else if (bodySize === 3) {
+        path = '/model_files/maleCaucasian03.gltf';
+      } else if (bodySize === 4) {
+        path = '/model_files/maleCaucasian04.gltf';
+      } else if (bodySize === 5) {
+        path = '/model_files/maleCaucasian05.gltf';
+      }
     }
     return path;
   }, [selectedGender, bodySize]);
