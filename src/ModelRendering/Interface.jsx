@@ -1,4 +1,4 @@
-import { Affix, Button, Group } from "@mantine/core";
+import { Button, Group } from "@mantine/core";
 import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
 import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
 import {Tooltip, IconButton} from "@mui/material/";
@@ -9,11 +9,11 @@ import "./Interface.css"; // import style sheet
 
 const Interface = () => {
   const { headConfiguratorOpen, setHeadConfiguratorOpen } = useCharacterCustomization();
-  const orbitControlsRef = useRef(); // Reference to OrbitControls component
+  const orbitControlsRef = useRef(); 
 
   const handleResetCamera = () => {
     if (orbitControlsRef.current) {
-      orbitControlsRef.current.reset(); // Call reset method of OrbitControls
+      orbitControlsRef.current.reset(); 
     }
   };
 
@@ -31,7 +31,8 @@ const Interface = () => {
           <QuestionMark/>
         </IconButton>
       </Tooltip>
-      <Affix position={{ top: 180, left: 50 }}>
+      
+      <div style={{ position: 'absolute', top: '20%', left: '5%' }}> 
         <Group>
           <Button
             variant={headConfiguratorOpen ? "filled" : "light"}
@@ -42,12 +43,11 @@ const Interface = () => {
             Model Settings
           </Button>
         </Group>
-        <Affix position={{ top: 200, left: 50 }}>
-          {headConfiguratorOpen && <SettingsConfigurator />}
-        </Affix>
-      </Affix>
+      </div>
+      <div style={{ position: 'absolute', top: '25%', left: '5%' }}> 
+      {headConfiguratorOpen && <SettingsConfigurator />}
+      </div>
       <Button onClick={handleResetCamera}>Reset Camera</Button> {/* Add reset button */}
-      {/* ... Other components, Export button ... */}
     </div>
   );
 };
