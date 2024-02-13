@@ -7,6 +7,12 @@ export const CameraControls = () => {
   const {setHeadConfiguratorOpen} = useCharacterCustomization();
   const orbitControls = useRef();
 
+  const handleReset = () => {
+    if (orbitControls.current) {
+      orbitControls.current.reset(); // Reset camera controls
+    }
+  };
+
   // model camera controls
   // TODO: set min and max zoom
   return (
