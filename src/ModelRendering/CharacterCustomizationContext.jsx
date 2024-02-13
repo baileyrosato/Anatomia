@@ -29,8 +29,6 @@ export const CharacterCustomizationProvider = ({ children }) => {
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.HEAD);
   const [skinColor, setSkinColor] = useState("#ffffff");
-  const [morphTargetDictionary, setMorphTargetDictionary] = useState([]);
-  const [morphTargetInfluences, setMorphTargetInfluences] = useState([]);
   const [bodySize, setBodySize] = useState(1); // Set an initial body size
   const [selectedGender, setGender] = useState("male"); 
   return (
@@ -46,10 +44,6 @@ export const CharacterCustomizationProvider = ({ children }) => {
         setBodySize,
         selectedGender,
         setGender,
-        morphTargetDictionary,
-        setMorphTargetDictionary,
-        morphTargetInfluences,
-        setMorphTargetInfluences,
       }}
     >
       {children}

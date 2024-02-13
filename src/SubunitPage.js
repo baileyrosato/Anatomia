@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
-import { CharacterAnimationsProvider } from "./ModelRendering/CharacterAnimations.jsx";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
 
 import './SubunitPage.css';
@@ -86,11 +85,9 @@ export default function SubunitPage() {
         </div>
 
         {/*Model Container*/}
-          <CharacterAnimationsProvider>
             <div className="model-container">
               <ModelPage />
             </div>
-          </CharacterAnimationsProvider>
 
          {/* Embedded container with scrollbar */}
          <div className="unit-content-container">
