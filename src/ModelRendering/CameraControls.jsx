@@ -9,7 +9,7 @@ export const CameraControls = () => {
 
   const handleReset = () => {
     if (orbitControls.current) {
-      orbitControls.current.reset(); // Reset camera controls
+      orbitControls.current.reset(); 
     }
   };
 
