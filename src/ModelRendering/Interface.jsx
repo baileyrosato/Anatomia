@@ -3,19 +3,18 @@ import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
 import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
 import {Tooltip, IconButton} from "@mui/material/";
 import {QuestionMark} from '@mui/icons-material';
-import { useRef } from "react"; // Import useRef
 
 import "./Interface.css"; // import style sheet
 
-const Interface = () => {
+const Interface = ({ orbitControlsRef }) => {
   const { headConfiguratorOpen, setHeadConfiguratorOpen } = useCharacterCustomization();
-  const orbitControlsRef = useRef(); 
 
   const handleResetCamera = () => {
-    if (orbitControlsRef.current) {
-      orbitControlsRef.current.reset(); 
-    }
-  };
+      console.log("orbitControlsRef:", orbitControlsRef);
+      if (orbitControlsRef.current) {
+        orbitControlsRef.current.reset(); 
+      }
+    };
 
   return (
     <div className="model-scene-container">
@@ -47,7 +46,7 @@ const Interface = () => {
       <div style={{ position: 'absolute', top: '25%', left: '5%' }}> 
       {headConfiguratorOpen && <SettingsConfigurator />}
       </div>
-      <Button onClick={handleResetCamera}>Reset Camera</Button> {/* Add reset button */}
+      <Button onClick={handleResetCamera}>Reset Camera</Button>
     </div>
   );
 };
