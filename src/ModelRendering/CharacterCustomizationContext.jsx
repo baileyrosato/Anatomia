@@ -25,12 +25,30 @@ export const SwatchesColors = [
   "#361e02",
 ];
 
+
 export const CharacterCustomizationProvider = ({ children }) => {
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.HEAD);
-  const [skinColor, setSkinColor] = useState("#ffffff");
-  const [bodySize, setBodySize] = useState(1); // Set an initial body size
-  const [selectedGender, setGender] = useState("male"); 
+  const [skinColor, setSkinColor] = useState(getRandomColor());
+  const [bodySize, setBodySize] = useState(getRandomArbitrary(1, 5)); // Set an initial random body size from 1 - 5
+  const [selectedGender, setGender] = useState(getRandomGender()); 
+
+  function getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * SwatchesColors.length);
+    return SwatchesColors[randomIndex];
+  }
+
+  function getRandomGender() {
+    const randomIndex = Math.random() < 0.5 ? 0 : 1; // 50% chance for each gender
+    return randomIndex === 0 ? 'male' : 'female';
+  }
+
+  function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
+
+
+
   return (
     <CharacterCustomizationContext.Provider
       value={{
@@ -54,3 +72,4 @@ export const CharacterCustomizationProvider = ({ children }) => {
 export const useCharacterCustomization = () => {
   return useContext(CharacterCustomizationContext);
 };
+
