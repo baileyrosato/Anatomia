@@ -25,6 +25,12 @@ function Anatomymodel (props) {
         path = '/model_files/femaleCaucasian04.gltf';
       } else if (bodySize === 5) {
         path = '/model_files/femaleCaucasian05.gltf';
+      } else if (bodySize === 6) {
+        path = '/model_files/femaleCaucasian06.gltf';
+      } else if (bodySize === 7) {
+        path = '/model_files/femaleCaucasian07.gltf';
+      } else if (bodySize === 8) {
+        path = '/model_files/femaleCaucasian08.gltf';
       }
     }
     else {
@@ -38,6 +44,12 @@ function Anatomymodel (props) {
         path = '/model_files/maleCaucasian04.gltf';
       } else if (bodySize === 5) {
         path = '/model_files/maleCaucasian05.gltf';
+      } else if (bodySize === 6) {
+        path = '/model_files/maleCaucasian06.gltf';
+      } else if (bodySize === 7) {
+        path = '/model_files/maleCaucasian07.gltf';
+      } else if (bodySize === 8) {
+      path = '/model_files/maleCaucasian08.gltf';
       }
     }
     return path;
