@@ -1,0 +1,12 @@
+.stickyNote{
+  float:right; 
+  box-sizing:border-box;
+  margin-top: 90px;
+}
+
+textarea{
+  outline:none;
+  padding:10px;
+  resize: none;
+  overflow: auto;
+}
