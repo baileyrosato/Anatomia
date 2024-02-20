@@ -10,3 +10,10 @@ textarea{
   resize: none;
   overflow: auto;
 }
+
+.noteHeader {
+  background: rgb(240,204,187);
+  color: black;
+  padding: 10px;
+  display: flex;
+}
