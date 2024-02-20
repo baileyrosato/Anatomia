@@ -20,7 +20,6 @@ export default function SubunitPage() {
   const [note, setNote] = useState({id: Date.now(), content: ''});
   const [open, setOpen] = useState(false);
 
-
   useEffect(() => {
     setSubunitDescription("");
     // fetch courseData from database
@@ -56,21 +55,9 @@ export default function SubunitPage() {
       });
   }, [unit, subunit]); // fetch description whenever unit or subunit changes
 
-  // adding the note
-  function addNote() {
-    if (!note.content) {
-      setNote({id: Date.now(), content: ''});
-    }
-  }
-
   // handling the content in order for the note not to disappear
   function handleContentChange(newContent) {
     setNote({...note, content: newContent});
-  }
-
-  // closing the note
-  function removeNote() {
-    setNote({...note, id: null});
   }
 
   // function saving to export to pdf
@@ -102,12 +89,15 @@ export default function SubunitPage() {
       disableEnforceFocus
     >
       <Box>
-      {note.id !== null && <Notes onClose={removeNote} content={note.content} 
+      {note.id !== null && <Notes content={note.content} 
       onContentChange={handleContentChange} />}
       </Box>
 
     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <Button variant="contained" color="secondary" onClick={exportNote}>Export Note</Button>
+      <Button 
+        variant="contained" 
+        color="secondary" 
+        onClick={exportNote}> Export Note </Button>
     </Box>
     </Drawer>
 
