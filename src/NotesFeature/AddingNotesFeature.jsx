@@ -19,7 +19,7 @@ export default function Notes({content, onContentChange}){
             <div className="noteHeader">
                 <div>Notes: </div>
             </div>
-            <textarea value={localContent} onChange={handleChange} name="" id="" cols="30" rows="15"></textarea>
+            <textarea value={localContent} onChange={handleChange} name="" id="" cols="60" rows="15"></textarea>
         </div>
     )
  }
