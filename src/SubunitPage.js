@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
-
+import Notes from './NotesFeature/AddingNotesFeature.jsx'
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
+import jsPDF from 'jspdf';
 
 import { firebase } from './config.js';
 
@@ -14,6 +15,7 @@ export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
+  const [note, setNote] = useState({id: null, content: ''});
 
   useEffect(() => {
     setSubunitDescription("");
@@ -50,9 +52,39 @@ export default function SubunitPage() {
       });
   }, [unit, subunit]); // fetch description whenever unit or subunit changes
 
-  
+  // adding a note
+  function addNote() {
+    if (note.id === null) {
+      setNote({id: Date.now(), content: note.content || ''});
+    }
+  }
+
+  // handling the content in order for the note not to disappear
+  function handleContentChange(newContent) {
+    setNote({...note, content: newContent});
+  }
+
+  // closing the note
+  function removeNote() {
+    setNote({...note, id: null});
+  }
+
+  // function saving to export to pdf
+  function exportNote(){
+    const document = new jsPDF();
+    const text = note.content;
+    document.text(text, 10, 10);
+    document.save('note.pdf')
+  }
+
   return (
   <CharacterCustomizationProvider>
+    <button className="notesBtn" onClick={addNote}>Notes</button>
+      {note.id !== null && <Notes onClose={removeNote} content={note.content} 
+      onContentChange={handleContentChange} />}
+
+    <button onClick={exportNote} className="exportNotebtn">Export Note</button>
+
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
