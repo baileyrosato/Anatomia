@@ -18,8 +18,6 @@ export default function Notes({onClose, content, onContentChange}){
         <div className="stickyNote" >
             <div style={{background:'rgb(240,204,187)', color:'black', padding: '10px', display: 'flex', justifyContent:'space-Between' }} className="noteHeader">
                 <div>Notes: </div>
-                <div  style={{ width:"35px", height:"35px", background:"rgb(219,176,154)",borderRadius:"50%", 
-                display:"grid", placeContent:'center', paddingBottom:'5px', cursor:'pointer' }} className="close" onClick={onClose}> &times; </div>
             </div>
             <textarea value={localContent} onChange={handleChange} name="" id="" cols="30" rows="15"></textarea>
         </div>
