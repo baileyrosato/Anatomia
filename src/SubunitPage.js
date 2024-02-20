@@ -8,6 +8,8 @@ import Notes from './NotesFeature/AddingNotesFeature.jsx'
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
 import jsPDF from 'jspdf';
+import { Button, TextField, Container, Drawer, Box} from '@mui/material';
+
 
 import { firebase } from './config.js';
 
@@ -15,7 +17,9 @@ export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
-  const [note, setNote] = useState({id: null, content: ''});
+  const [note, setNote] = useState({id: Date.now(), content: ''});
+  const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     setSubunitDescription("");
@@ -52,10 +56,10 @@ export default function SubunitPage() {
       });
   }, [unit, subunit]); // fetch description whenever unit or subunit changes
 
-  // adding a note
+  // adding the note
   function addNote() {
-    if (note.id === null) {
-      setNote({id: Date.now(), content: note.content || ''});
+    if (!note.content) {
+      setNote({id: Date.now(), content: ''});
     }
   }
 
@@ -79,11 +83,33 @@ export default function SubunitPage() {
 
   return (
   <CharacterCustomizationProvider>
-    <button className="notesBtn" onClick={addNote}>Notes</button>
+    <Box 
+      sx={{ 
+        float: 'right', 
+        marginTop: '150px', 
+        marginRight: '100px'
+      }}>
+      <Button 
+        variant="contained" 
+        color="primary" 
+        onClick={() => setOpen(true)}> Notes </Button>
+    </Box>
+
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={() => setOpen(false)}
+      disableEnforceFocus
+    >
+      <Box>
       {note.id !== null && <Notes onClose={removeNote} content={note.content} 
       onContentChange={handleContentChange} />}
+      </Box>
 
-    <button onClick={exportNote} className="exportNotebtn">Export Note</button>
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Button variant="contained" color="secondary" onClick={exportNote}>Export Note</Button>
+    </Box>
+    </Drawer>
 
     <MantineProvider
       withGlobalStyles
