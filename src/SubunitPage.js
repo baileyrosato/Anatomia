@@ -10,7 +10,6 @@ import Menu from "./Navigation.js";
 import jsPDF from 'jspdf';
 import { Button, Drawer, Box} from '@mui/material';
 
-
 import { firebase } from './config.js';
 
 export default function SubunitPage() {
@@ -88,6 +87,8 @@ export default function SubunitPage() {
       onClose={() => setOpen(false)}
       disableEnforceFocus
     >
+      <Button onClick={() => setOpen(false)}>Close</Button>
+
       <Box>
       {note.id !== null && <Notes content={note.content} 
       onContentChange={handleContentChange} />}
