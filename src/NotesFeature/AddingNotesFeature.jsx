@@ -1,4 +1,3 @@
-import { Flex } from "@mantine/core";
 import "./AddingNotes.css"
 import { useEffect, useState } from 'react';
 
