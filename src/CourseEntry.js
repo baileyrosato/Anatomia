@@ -39,7 +39,7 @@ export default function CourseEntry() {
   };
 
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <Grid container component="main" sx={{ height: '100vh'}}>
       <CssBaseline />
       {/* add biology specific image to page*/}
       <Grid item xs={false} sm={4} md={7}
@@ -49,7 +49,7 @@ export default function CourseEntry() {
           backgroundPosition: 'center',
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{backgroundColor: 'rgb(251,248,243)'}}>
         <Box
           sx={{ my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '75%' }}>
           {/* add title */}
