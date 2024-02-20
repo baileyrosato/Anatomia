@@ -15,7 +15,7 @@ export default function Notes({onClose, content, onContentChange}){
     }
 
     return (
-        <div className="stickyNote" >
+        <div className="Note" >
             <div style={{background:'rgb(240,204,187)', color:'black', padding: '10px', display: 'flex', justifyContent:'space-Between' }} className="noteHeader">
                 <div>Notes: </div>
             </div>
