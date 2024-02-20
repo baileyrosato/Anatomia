@@ -1,88 +1,90 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Container} from '@mui/material';
 import myImage from './images/Anatomy_Course_Image.jpg';
-import { Box } from '@mui/system';
+import {Button, CssBaseline,TextField,Link, Paper, Box, Grid, Typography, Alert} from '@mui/material';
+
+// function to add a link to our github
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://github.com/baileyrosato/Anatomia/tree/main">
+        Anatomia
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 export default function CourseEntry() {
-//   const classes = useStyles();
-  const [courseCode, setCourseCode] = useState("");
+  const [courseCode, setCourseCode] = useState('');
+  const [alertType, setAlertType] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setCourseCode(event.target.value);
   };
 
-  // submit the course code
+  // check to see if entered course code is correct
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(courseCode.toUpperCase() === "BIO201")
-    {
-        console.log("Course code is correct", courseCode)
-        navigate('/MainMenu');
-    }
-    else
-    {
-      window.alert("Incorrect course code. Re-enter course code")
-      setCourseCode("");
-
+    if (courseCode.toUpperCase() === 'BIO201') {
+      setAlertType('success');
+      navigate('/MainMenu');
+    } else {
+      setAlertType('error');
+      setCourseCode('');
     }
   };
 
   return (
-    <Container 
-      component="main" 
-      maxWidth="md"
-      display="flex"
-      sx={{ 
-        p: 4, 
-        border: '20px solid rgb(176, 168, 168)',
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center'
+    <Grid container component="main" sx={{ height: '100vh' }}>
+      <CssBaseline />
+      {/* add biology specific image to page*/}
+      <Grid item xs={false} sm={4} md={7}
+        sx={{
+          backgroundImage: `url(${myImage})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
         }}
-    >
-      <Box
-      >
-        <img src={myImage} alt=""/>
-      </Box>
-      <Box 
-          component="form"
-          onSubmit={handleSubmit}
-          sx={{
-            minWidth: '30%',
-            justifyContent: 'center',
-          }}
-      >
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="courseCode"
-            label="Please enter course code"
-            name="courseCode"
-            value={courseCode}
-            onChange={handleInputChange}
-            sx = {{
-                backgroundColor: '#182858',
-                borderRadius: '15px',
-                "::placeholder": '#d2c8bf',
-            }}
-        />
-        <Button
-        type="submit"
-        variant="contained"
-        sx = {{
-            mt: 2,
-            backgroundColor: 'd2c8bf',
-        }}
-        >
-            Login
-        </Button>
-      </Box>
-
-
-    </Container>
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
+          sx={{ my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '75%' }}>
+          {/* add title */}
+          <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
+            Diversified Anatomy and Physology <br /> Lab Resource
+          </Typography>
+          {/* create login form */}
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            {/* course code input box */}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="courseCode"
+              label="Please enter a course code"
+              name="courseCode"
+              value={courseCode}
+              onChange={handleInputChange}
+              autoFocus
+            />
+            {/* submit button */}
+            <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2 }}>
+              Submit
+            </Button>
+            {/* show alert if incorrect code is submitted */}
+            {alertType === 'error' && (
+              <Alert sx={{ mb: 2 }} severity="error">
+                Incorrect course code. Please try again.
+              </Alert>
+            )}
+            {/* show copyright and github link */}
+            <Copyright />
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
