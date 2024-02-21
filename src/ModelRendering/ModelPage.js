@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import Interface from "./Interface.jsx";
 
 function ModelPage() {
+  const orbitControlsRef = useRef();
     return (
       <>
         <Canvas
@@ -11,9 +12,9 @@ function ModelPage() {
           shadows
           gl={{ preserveDrawingBuffer: true }}
         >
-          <Experience />
+          <Experience orbitControlsRef={orbitControlsRef} />
         </Canvas>
-        <Interface />
+        <Interface orbitControlsRef={orbitControlsRef}  />
       </>
     );
 }

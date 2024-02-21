@@ -64,6 +64,9 @@ export const SettingsConfigurator = () => {
           <MenuItem value={3}>Body 3</MenuItem>
           <MenuItem value={4}>Body 4</MenuItem>
           <MenuItem value={5}>Body 5</MenuItem>
+          <MenuItem value={6}>Body 6</MenuItem>
+          <MenuItem value={7}>Body 7</MenuItem>
+          <MenuItem value={8}>Body 8</MenuItem>
         </Select>
         </FormControl>
         </div>
