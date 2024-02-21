@@ -32,7 +32,7 @@ const courseData = [
       {
         title:'Regions of the Body', 
         description: 'The abdomen is divided into either four quadrants or 9 regions.',
-        image: './images/RegionsOfBody.jpeg' 
+        image: 'gs://anatomia-f43c1.appspot.com/RegionsOfBody.jpeg' 
       }
     ]
   },
