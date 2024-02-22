@@ -1,14 +1,15 @@
 // SubunitPage.js
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, Button } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
 import Notes from './NotesFeature/AddingNotesFeature.jsx'
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
 import jsPDF from 'jspdf';
-import { Button, Drawer, Box} from '@mui/material';
+import { Drawer, Box, IconButton} from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 import { firebase } from './config.js';
 
@@ -69,39 +70,6 @@ export default function SubunitPage() {
 
   return (
   <CharacterCustomizationProvider>
-    <Box 
-      sx={{ 
-        float: 'right', 
-        marginTop: '150px', 
-        marginRight: '100px'
-      }}>
-      <Button 
-        variant="contained" 
-        color="primary" 
-        onClick={() => setOpen(true)}> Notes </Button>
-    </Box>
-
-    <Drawer
-      anchor="right"
-      open={open}
-      onClose={() => setOpen(false)}
-      disableEnforceFocus
-    >
-      <Button onClick={() => setOpen(false)}>Close</Button>
-
-      <Box>
-      {note.id !== null && <Notes content={note.content} 
-      onContentChange={handleContentChange} />}
-      </Box>
-
-    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <Button 
-        variant="contained" 
-        color="secondary" 
-        onClick={exportNote}> Export Note </Button>
-    </Box>
-    </Drawer>
-
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
@@ -117,7 +85,39 @@ export default function SubunitPage() {
           },
         }),
       }} 
+    > 
+    <Box 
+      sx={{ 
+        float: 'right', 
+        marginTop: '150px', 
+        marginRight: '100px'
+      }}>
+      <Button  
+        onClick={() => setOpen(true)}> Notes </Button>
+    </Box>
+
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={() => setOpen(false)}
+      disableEnforceFocus
     >
+      <IconButton onClick={() => setOpen(false)} style={{ alignSelf: 'flex-start', margin: '8px' }}>
+            <Close />
+      </IconButton>
+
+      <Box>
+        {note.id !== null && <Notes content={note.content} 
+          onContentChange={handleContentChange} />}
+      </Box>
+
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Button 
+        onClick={exportNote}> Export Note </Button>
+    </Box>
+    </Drawer>
+
+    
      <div className="subunit-page">
         
         {/* Hamburger menu */}
