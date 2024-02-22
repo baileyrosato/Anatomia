@@ -65,7 +65,11 @@ export default function SubunitPage() {
     const document = new jsPDF();
     const text = note.content;
     document.text(text, 10, 10);
-    document.save('note.pdf')
+    // Get current date and format it as yyyy-mm-dd
+    const date = new Date();
+    const formattedDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    // save the document name with the date
+    document.save(`note_${formattedDate}.pdf`);
   }
 
   return (
