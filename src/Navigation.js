@@ -11,13 +11,13 @@ import { List } from '@mui/material'
 import { ListItem } from '@mui/material'
 import { ListItemText } from '@mui/material'
 import { IconButton } from '@mui/material'
-import { Menu } from '@mui/icons-material';
+import { Menu, Close } from '@mui/icons-material';
 import { Collapse } from '@mui/material';
 import { ExpandLess } from '@mui/icons-material';
 import { ExpandMore } from '@mui/icons-material';
 
 // import firebase database
-import { firebase } from './config.js';
+import { firebase } from './Database/config.js';
 
 const HamburgerMenu = () => {
   const [courseData, setCourseData] = useState([]);
@@ -59,6 +59,17 @@ const HamburgerMenu = () => {
       </IconButton>
       <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
         <List>
+          <IconButton onClick={toggleMenu} style={{ alignSelf: 'flex-end', margin: '8px' }}>
+            <Close />
+          </IconButton>
+
+          {/* Main Menu Page */}
+          <ListItem button>
+            <Link to="/MainMenu" className="custom-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemText primary="Main Menu" />
+            </Link>
+          </ListItem>
+          
           {courseData.map((course, index) => (
              // ALL CODE BELOW THIS POINT IS BEING REUSED FROM THE MAIN MENU
             <div key={index} className='unit-container'> 

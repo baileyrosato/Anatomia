@@ -1,10 +1,10 @@
 import { CameraControls } from "./CameraControls.jsx";
 import Anatomymodel from "./Anatomymodel.jsx";
 
-const Experience = () => {
+const Experience = ({ orbitControlsRef }) => {
   return (
     <>
-      <CameraControls />
+      <CameraControls orbitControlsRef={orbitControlsRef}/>
       <ambientLight />
       <directionalLight
         position={[5, 10, 7]}
