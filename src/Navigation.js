@@ -17,7 +17,7 @@ import { ExpandLess } from '@mui/icons-material';
 import { ExpandMore } from '@mui/icons-material';
 
 // import firebase database
-import { firebase } from './config.js';
+import { firebase } from './Database/config.js';
 
 const HamburgerMenu = () => {
   const [courseData, setCourseData] = useState([]);

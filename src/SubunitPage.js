@@ -8,47 +8,34 @@ import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustom
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
 
-import { firebase } from './config.js';
+import { fetchSubunitData, fetchSubunitImageDownloadUrl } from './Database/databaseUtils.js';
 
 export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
+  const [subunitImage, setSubunitImage] = useState("");
 
   useEffect(() => {
     setSubunitDescription("");
-    // fetch courseData from database
-    const courseDataRef = firebase.database().ref('courseData');
-    courseDataRef.once('value')
-      .then((snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          // find the index of the unit
-          const foundUnitIndex = data.findIndex((course) => course.unit === unit);
-        
-          // find the index of the subunit within the unit
-          const foundSubunitIndex = data[foundUnitIndex]?.subunits.findIndex((sub) => sub.title === subunit);
-
-          // fetch subunit description from database using the indices
-          if (foundUnitIndex !== -1 && foundSubunitIndex !== -1) {
-            const subunitRef = firebase.database().ref(`courseData/${foundUnitIndex}/subunits/${foundSubunitIndex}/description`);
-            subunitRef.once('value')
-              .then((snapshot) => {
-                const description = snapshot.val();
-                if (description) {
-                  setSubunitDescription(description); 
-                }
-              })
-              .catch((error) => {
-                console.error('Error fetching subunit description from the database:', error);
-              });
-          }
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching course data from the database:', error);
-      });
-  }, [unit, subunit]); // fetch description whenever unit or subunit changes
+    setSubunitImage("");
+    fetchSubunitData(unit, subunit)
+    .then((subunitData) => {
+      setSubunitDescription(subunitData.description); 
+      if (subunitData.image) {
+        fetchSubunitImageDownloadUrl(subunitData.image)
+          .then((url) => {
+            setSubunitImage(url);
+          })
+          .catch((error) => {
+            console.error('Error getting download URL:', error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching subunit data:', error);
+    });
+}, [unit, subunit]); // fetch description and image if the unit and subunit changes
 
   
   return (
@@ -89,10 +76,11 @@ export default function SubunitPage() {
               <ModelPage />
             </div>
 
-         {/* Embedded container with scrollbar */}
+         {/* Embedded container with scrollbar that displays the subunit description and image */}
          <div className="unit-content-container">
             <div className="unit-content">
               {subunitDescription}
+              {subunitImage && <img src={subunitImage} alt="Subunit" className="subunit-image" />}
             </div>
           </div>
       </div>
