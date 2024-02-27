@@ -1,43 +1,93 @@
 // SubunitPage.js
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, Button } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
-
+import Notes from './NotesFeature/AddingNotesFeature.jsx'
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
+import jsPDF from 'jspdf';
+import { Drawer, Box, IconButton} from '@mui/material';
+import { Close, RingVolumeRounded } from '@mui/icons-material';
 
-import { fetchSubunitData, fetchSubunitImageDownloadUrl } from './Database/databaseUtils.js';
+import { firebase } from './config.js';
 
 export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
-  const [subunitImage, setSubunitImage] = useState("");
+  const [note, setNote] = useState({id: Date.now(), content: ''});
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setSubunitDescription("");
-    setSubunitImage("");
-    fetchSubunitData(unit, subunit)
-    .then((subunitData) => {
-      setSubunitDescription(subunitData.description); 
-      if (subunitData.image) {
-        fetchSubunitImageDownloadUrl(subunitData.image)
-          .then((url) => {
-            setSubunitImage(url);
-          })
-          .catch((error) => {
-            console.error('Error getting download URL:', error);
-          });
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching subunit data:', error);
-    });
-}, [unit, subunit]); // fetch description and image if the unit and subunit changes
+    // fetch courseData from database
+    const courseDataRef = firebase.database().ref('courseData');
+    courseDataRef.once('value')
+      .then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          // find the index of the unit
+          const foundUnitIndex = data.findIndex((course) => course.unit === unit);
+        
+          // find the index of the subunit within the unit
+          const foundSubunitIndex = data[foundUnitIndex]?.subunits.findIndex((sub) => sub.title === subunit);
 
-  
+          // fetch subunit description from database using the indices
+          if (foundUnitIndex !== -1 && foundSubunitIndex !== -1) {
+            const subunitRef = firebase.database().ref(`courseData/${foundUnitIndex}/subunits/${foundSubunitIndex}/description`);
+            subunitRef.once('value')
+              .then((snapshot) => {
+                const description = snapshot.val();
+                if (description) {
+                  setSubunitDescription(description); 
+                }
+              })
+              .catch((error) => {
+                console.error('Error fetching subunit description from the database:', error);
+              });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching course data from the database:', error);
+      });
+  }, [unit, subunit]); // fetch description whenever unit or subunit changes
+
+  // handling the content making sure it is up-to-date
+  function handleContentChange(newContent) {
+    setNote({...note, content: newContent});
+  }
+
+  // function saving to export to pdf
+  function exportNote(){
+    const document = new jsPDF();
+    const text = note.content;
+    const numLines = document.splitTextToSize(text, 230);
+    const spacing = 10;
+    let topMargin = 20;
+
+    // changing font size
+    document.setFontSize(12);
+
+    // looping through and checking when to cut off the page
+    for( let i = 0; i < numLines.length; i++){
+      // checking if the current line is not the last
+      if ( topMargin + spacing > document.internal.pageSize.height){
+        document.addPage();
+        topMargin = 20;
+      }
+      document.text(numLines[i], 20, topMargin);
+      topMargin += spacing;
+    }
+    const date = new Date();
+    // setting the date
+    const formattedDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    // saving the pdf's name with a date
+    document.save(`note_${formattedDate}.pdf`);
+  }
+
   return (
   <CharacterCustomizationProvider>
     <MantineProvider
@@ -55,7 +105,42 @@ export default function SubunitPage() {
           },
         }),
       }} 
+    > 
+    <Box 
+      sx={{ 
+        float: 'right', 
+        marginTop: '150px', 
+        marginRight: '100px'
+      }}>
+      <Button  
+        onClick={() => setOpen(true)}> Notes </Button>
+    </Box>
+
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={() => setOpen(false)}
+      disableEnforceFocus
     >
+      <IconButton onClick={() => setOpen(false)} 
+        style={{ alignSelf: 'flex-start', 
+                 margin: '8px' }}>
+            <Close />
+      </IconButton>
+
+      <Box>
+        {note.id !== null && <Notes content={note.content} 
+          onContentChange={handleContentChange} />}
+      </Box>
+
+    <Box sx={{ display: 'flex', 
+               justifyContent: 'flex-end' }}>
+      <Button 
+        onClick={exportNote}> Export Note </Button>
+    </Box>
+    </Drawer>
+
+    
      <div className="subunit-page">
         
         {/* Hamburger menu */}
@@ -76,11 +161,10 @@ export default function SubunitPage() {
               <ModelPage />
             </div>
 
-         {/* Embedded container with scrollbar that displays the subunit description and image */}
+         {/* Embedded container with scrollbar */}
          <div className="unit-content-container">
             <div className="unit-content">
               {subunitDescription}
-              {subunitImage && <img src={subunitImage} alt="Subunit" className="subunit-image" />}
             </div>
           </div>
       </div>

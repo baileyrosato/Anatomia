@@ -1,0 +1,19 @@
+.Note{
+  float:right; 
+  box-sizing:border-box;
+  margin-top: 90px;
+}
+
+textarea{
+  outline:none;
+  padding:10px;
+  resize: none;
+  overflow: auto;
+}
+
+.noteHeader {
+  background: rgb(240,204,187);
+  color: black;
+  padding: 10px;
+  display: flex;
+}
