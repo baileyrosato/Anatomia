@@ -64,11 +64,10 @@ const HamburgerMenu = () => {
           </IconButton>
 
           {/* Main Menu Page */}
-          <ListItem button>
-            <Link to="/MainMenu" className="custom-link" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItemText primary="Main Menu" />
-            </Link>
+          <ListItem button component={Link} to="/MainMenu" className="custom-link">
+             <ListItemText primary="Main Menu" />
           </ListItem>
+
           
           {courseData.map((course, index) => (
              // ALL CODE BELOW THIS POINT IS BEING REUSED FROM THE MAIN MENU
@@ -104,11 +103,14 @@ const HamburgerMenu = () => {
               </React.Fragment>
             ) : (
               // if user guide, direct the user to user guide page
-              <div style={{ width: '100px' }}>
-                <Link to="/user-guide" className="custom-link" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <ListItemText primary={course.unit} style={{ marginLeft: '16px' }} />
-                </Link>
-              </div>
+              <ListItem
+              button
+              component={Link}
+              to="/user-guide"
+              className={`unit-item user-guide-item ${expandedUnits.includes(course.unit) ? 'expanded' : ''}`}
+            >
+              <ListItemText primary={course.unit} />
+            </ListItem>
         )}
       </div>
     ))}

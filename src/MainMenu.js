@@ -59,17 +59,17 @@ export default function MainMenu() {
       <List>
         {courseData.map((course, index) => (
           // create a container for the unit info
-          <div key={index} className='unit-container'> 
+          <div key={index} className='unit-container'>
             {/* check if the current unit is not the user guide */}
             {course.unit !== "User Guide" ? (
               // If not the user guide, render as a normal unit
               <React.Fragment>
-                <ListItem 
+                <ListItem
                   // on click function to toggle unit
-                  // button is deprecated but allows highlighting of unit when click
-                  button 
+                  // button is deprecated but allows highlighting of unit when clicked
+                  button
                   onClick={() => toggleUnit(course.unit)}
-                  // check if the current unit is expanded 
+                  // check if the current unit is expanded
                   className={expandedUnits.includes(course.unit) ? 'expanded' : ''}
                 >
                   <ListItemText primary={course.unit} />
@@ -80,7 +80,7 @@ export default function MainMenu() {
                   <List component="div" disablePadding>
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
-                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
+                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px' }}>
                         <Link to={`/course/${course.unit}/${subunit.title}`}>
                           <ListItemText primary={subunit.title} />
                         </Link>
@@ -90,16 +90,19 @@ export default function MainMenu() {
                 </Collapse>
               </React.Fragment>
             ) : (
-              // if user guide, direct the user to user guide page
-              <div style={{ width: '100px' }}>
-                <Link to="/user-guide" className="custom-link" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <ListItemText primary={course.unit} style={{ marginLeft: '16px' }} />
-                </Link>
-              </div>
-        )}
-      </div>
-    ))}
-  </List>
-</div>
-);
-}
+              // if user guide, direct the user to user guide page with the same hover style
+              <ListItem
+                button
+                component={Link}
+                to="/user-guide"
+                className={`unit-item user-guide-item ${expandedUnits.includes(course.unit) ? 'expanded' : ''}`}
+              >
+                <ListItemText primary={course.unit} />
+              </ListItem>
+            )}
+          </div>
+        ))}
+      </List>
+    </div>
+  );
+  }
