@@ -11,12 +11,11 @@ import "./Interface.css"; // import style sheet
 const Interface = ({ orbitControlsRef }) => {
   const { headConfiguratorOpen, setHeadConfiguratorOpen } = useCharacterCustomization();
 
+  // function to export the model to png
   const exportModelToPNG = () => {
     const modelPageElement = document.querySelector('.model-page-container');
-
     html2canvas(modelPageElement).then(canvas => {
       const image = canvas.toDataURL('image/png');
-
       const downloadLink = document.createElement('a');
       downloadLink.href = image;
       downloadLink.download = 'model_image.png';

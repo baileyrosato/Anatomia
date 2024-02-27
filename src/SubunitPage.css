@@ -11,7 +11,7 @@ h2, h3 {
   text-align: center; 
 }
 
-.model-container {
+.model-container, .model-page-container {
   width: 75%; 
   height: 60vh; 
 }
