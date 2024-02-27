@@ -6,7 +6,8 @@ import Interface from "./Interface.jsx";
 function ModelPage() {
   const orbitControlsRef = useRef();
     return (
-      <>
+      <div>
+        <div className="model-page-container">
         <Canvas
           camera={{ position: [1, 1, 3], fov: 35 }}
           shadows
@@ -14,9 +15,9 @@ function ModelPage() {
         >
           <Experience orbitControlsRef={orbitControlsRef} />
         </Canvas>
+        </div>
         <Interface orbitControlsRef={orbitControlsRef}  />
-      </>
+      </div>
     );
 }
-
 export default ModelPage;
