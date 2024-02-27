@@ -10,7 +10,6 @@ import "./Interface.css"; // import style sheet
 
 const Interface = ({ orbitControlsRef }) => {
   const { headConfiguratorOpen, setHeadConfiguratorOpen } = useCharacterCustomization();
-  const [imageData, setImageData] = useState(null);
 
   const exportModelToPNG = () => {
     const modelPageElement = document.querySelector('.model-page-container');
