@@ -18,12 +18,12 @@ export const CameraControls = ({ orbitControlsRef }) => {
           break;
         case CameraModes.POSTERIOR:
           // set camera position for POSTERIOR mode
-          controls.object.position.set(0, 0, -3);
+          controls.object.position.set(0, 1, -3);
            controls.enableRotate = false;
           break;
         case CameraModes.ANTERIOR:
           // set camera position for ANTERIOR mode
-          controls.object.position.set(0, 0, 3);
+          controls.object.position.set(0, 1, 3);
            controls.enableRotate = false;
           break;
         default:
