@@ -3,11 +3,27 @@ import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
 import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
 import {Tooltip, IconButton} from "@mui/material/";
 import {QuestionMark} from '@mui/icons-material';
+import html2canvas from 'html2canvas';
+
 
 import "./Interface.css"; // import style sheet
 
 const Interface = ({ orbitControlsRef }) => {
   const { headConfiguratorOpen, setHeadConfiguratorOpen } = useCharacterCustomization();
+
+  // function to export the model to png
+  const exportModelToPNG = () => {
+    const modelPageElement = document.querySelector('.model-page-container');
+    html2canvas(modelPageElement).then(canvas => {
+      const image = canvas.toDataURL('image/png');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = image;
+      downloadLink.download = 'model_image.png';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    });
+  } 
 
   const handleResetCamera = () => {
       console.log("orbitControlsRef:", orbitControlsRef);
@@ -47,6 +63,7 @@ const Interface = ({ orbitControlsRef }) => {
       {headConfiguratorOpen && <SettingsConfigurator />}
       </div>
       <Button onClick={handleResetCamera}>Reset Camera</Button>
+      <Button onClick={exportModelToPNG} style={{ marginLeft: '12px' }}>Export Model</Button>
     </div>
   );
 };
