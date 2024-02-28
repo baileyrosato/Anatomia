@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import Interface from "./Interface.jsx";
 
-function ModelPage() {
+function ModelPage({ subunit }) {
   const orbitControlsRef = useRef();
     return (
       <div>
@@ -16,7 +16,7 @@ function ModelPage() {
           <Experience orbitControlsRef={orbitControlsRef} />
         </Canvas>
         </div>
-        <Interface orbitControlsRef={orbitControlsRef}  />
+        <Interface orbitControlsRef={orbitControlsRef} subunit={subunit} />
       </div>
     );
 }

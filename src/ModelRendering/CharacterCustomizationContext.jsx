@@ -2,9 +2,12 @@ import { createContext, useContext, useState } from "react";
 
 const CharacterCustomizationContext = createContext({});
 
-// only one camera mode that is free zoom, rotate, pan
+// only one camera mode that is free zoom, rotate, pan for most pages
+// other camera modes included for specific subunit interaction
 export const CameraModes = {
   HEAD: "HEAD",
+  POSTERIOR: "POSTERIOR",
+  ANTERIOR: "ANTERIOR",
 };
 
 // preset colors for skin tone picker
@@ -24,7 +27,6 @@ export const SwatchesColors = [
   "#643805",
   "#361e02",
 ];
-
 
 export const CharacterCustomizationProvider = ({ children }) => {
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
@@ -46,8 +48,6 @@ export const CharacterCustomizationProvider = ({ children }) => {
   function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * max) + min;
   }
-
-
 
   return (
     <CharacterCustomizationContext.Provider

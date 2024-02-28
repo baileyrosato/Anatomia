@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
-import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
+import { CharacterCustomizationProvider} from "./ModelRendering/CharacterCustomizationContext.jsx";
 
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
@@ -16,6 +16,7 @@ export default function SubunitPage() {
   const [subunitDescription, setSubunitDescription] = useState("");
   const [subunitImage, setSubunitImage] = useState("");
   const [showFullImage, setShowFullImage] = useState(false);
+
 
   useEffect(() => {
     setSubunitDescription("");
@@ -80,9 +81,9 @@ const handleCloseFullImage = () => {
         </div>
 
         {/*Model Container*/}
-            <div className="model-container">
-              <ModelPage />
-            </div>
+        <div className="model-container">
+          <ModelPage subunit={subunit}/>
+        </div>
 
          {/* Embedded container with scrollbar that displays the subunit description and image */}
          <div className="unit-content-container">
@@ -107,7 +108,6 @@ const handleCloseFullImage = () => {
             </div>
           )}
       </div>
-
     </MantineProvider>
     </CharacterCustomizationProvider>
   );
