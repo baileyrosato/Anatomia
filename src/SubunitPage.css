@@ -12,13 +12,38 @@ h2, h3 {
 }
 
 .model-page-container {
-  width: 75%; 
+  width: 100%; 
   height: 60vh; 
 }
 
 .model-container {
-  width: 75%; 
+  width: 100%; 
   height: 60vh; 
+}
+
+.model-and-whiteboard-container {
+  display: flex;
+  padding: 12px;
+}
+
+@media screen and (max-width: 800px) { 
+  .model-and-whiteboard-container {
+    flex-direction: column; 
+    align-items: center;
+  }
+  .model-container,
+  .whiteboard-container, .model-page-container {
+    width: 100%; 
+  }
+  .whiteboard-container {
+    padding: 12px;
+  }
+}
+
+.whiteboard-container {
+  width: 100%;
+  height: 60vh;
+  margin: 12px;
 }
 
 .unit-content-container {

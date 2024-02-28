@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
+import Whiteboard from './ModelRendering/Whiteboard.js';
 
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
@@ -71,10 +72,18 @@ export default function SubunitPage() {
           </div>
         </div>
 
-        {/*Model Container*/}
-            <div className="model-container">
-              <ModelPage />
-            </div>
+        {/* Model and Whiteboard Container */}
+        <div className="model-and-whiteboard-container">
+          {/* Model Container */}
+          <div className="model-container">
+            <ModelPage />
+          </div>
+
+          {/* Whiteboard Container */}
+          <div className="whiteboard-container">
+            <Whiteboard />
+          </div>
+        </div>
 
          {/* Embedded container with scrollbar that displays the subunit description and image */}
          <div className="unit-content-container">
