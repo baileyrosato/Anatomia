@@ -16,6 +16,7 @@ export default function SubunitPage() {
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
   const [subunitImage, setSubunitImage] = useState("");
+  const [showFullImage, setShowFullImage] = useState(false);
 
   useEffect(() => {
     setSubunitDescription("");
@@ -38,7 +39,14 @@ export default function SubunitPage() {
     });
 }, [unit, subunit]); // fetch description and image if the unit and subunit changes
 
-  
+const handleImageClick = () => {
+  setShowFullImage(true);
+};
+
+const handleCloseFullImage = () => {
+  setShowFullImage(false);
+};  
+
   return (
   <CharacterCustomizationProvider>
     <MantineProvider
@@ -89,9 +97,24 @@ export default function SubunitPage() {
          <div className="unit-content-container">
             <div className="unit-content">
               {subunitDescription}
-              {subunitImage && <img src={subunitImage} alt="Subunit" className="subunit-image" />}
+              {subunitImage && 
+                <img 
+                  src={subunitImage} 
+                  alt="Subunit" 
+                  className="subunit-image" 
+                  onClick={handleImageClick} 
+                />
+              }
             </div>
           </div>
+          {/* show the full image on top of page */}
+          {showFullImage && (
+            <div className="full-image-overlay" onClick={handleCloseFullImage}>
+              <div className="full-image-container">
+                <img src={subunitImage} alt="Subunit" className="full-image" />
+              </div>
+            </div>
+          )}
       </div>
 
     </MantineProvider>

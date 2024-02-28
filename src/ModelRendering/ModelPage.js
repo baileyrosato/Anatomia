@@ -7,7 +7,7 @@ function ModelPage() {
   const orbitControlsRef = useRef();
     return (
       <div>
-        <div className="model-page-container">
+         <div className="model-page-container">
         <Canvas
           camera={{ position: [1, 1, 3], fov: 35 }}
           shadows
