@@ -20,5 +20,4 @@ function ModelPage() {
       </div>
     );
 }
-
 export default ModelPage;

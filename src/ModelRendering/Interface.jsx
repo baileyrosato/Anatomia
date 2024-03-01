@@ -1,7 +1,8 @@
+import React from "react";
 import { Button, Group } from "@mantine/core";
 import { useCharacterCustomization } from "./CharacterCustomizationContext.jsx";
 import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
-import {Tooltip, IconButton} from "@mui/material/";
+import { Tooltip, IconButton} from "@mui/material/";
 import {QuestionMark} from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 
@@ -30,7 +31,7 @@ const Interface = ({ orbitControlsRef }) => {
       if (orbitControlsRef.current) {
         orbitControlsRef.current.reset(); 
       }
-    };
+  };
 
   return (
     <div className="model-scene-container">
