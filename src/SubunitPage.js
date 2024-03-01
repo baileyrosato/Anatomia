@@ -6,6 +6,7 @@ import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
 import Whiteboard from './ModelRendering/Whiteboard.js';
 
+
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
 
@@ -17,6 +18,7 @@ export default function SubunitPage() {
   const [subunitDescription, setSubunitDescription] = useState("");
   const [subunitImage, setSubunitImage] = useState("");
   const [showFullImage, setShowFullImage] = useState(false);
+
 
   useEffect(() => {
     setSubunitDescription("");
@@ -79,14 +81,12 @@ const handleCloseFullImage = () => {
             <h3>{subunit}</h3>
           </div>
         </div>
-
         {/* Model and Whiteboard Container */}
         <div className="model-and-whiteboard-container">
           {/* Model Container */}
           <div className="model-container">
-            <ModelPage />
+            <ModelPage subunit={subunit}/>
           </div>
-
           {/* Whiteboard Container */}
           <div className="whiteboard-container">
             <Whiteboard />
@@ -116,7 +116,6 @@ const handleCloseFullImage = () => {
             </div>
           )}
       </div>
-
     </MantineProvider>
     </CharacterCustomizationProvider>
   );
