@@ -20,5 +20,4 @@ function ModelPage({ subunit }) {
       </div>
     );
 }
-
 export default ModelPage;

@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
-import { CharacterCustomizationProvider} from "./ModelRendering/CharacterCustomizationContext.jsx";
+import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
+import Whiteboard from './ModelRendering/Whiteboard.js';
+
 
 import './SubunitPage.css';
 import Menu from "./Navigation.js";
@@ -79,10 +81,16 @@ const handleCloseFullImage = () => {
             <h3>{subunit}</h3>
           </div>
         </div>
-
-        {/*Model Container*/}
-        <div className="model-container">
-          <ModelPage subunit={subunit}/>
+        {/* Model and Whiteboard Container */}
+        <div className="model-and-whiteboard-container">
+          {/* Model Container */}
+          <div className="model-container">
+            <ModelPage subunit={subunit}/>
+          </div>
+          {/* Whiteboard Container */}
+          <div className="whiteboard-container">
+            <Whiteboard />
+          </div>
         </div>
 
          {/* Embedded container with scrollbar that displays the subunit description and image */}
