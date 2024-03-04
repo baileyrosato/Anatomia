@@ -54,7 +54,7 @@ export default function CourseEntry() {
           sx={{ my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '75%' }}>
           {/* add title */}
           <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
-            Diversified Anatomy and Physology <br /> Lab Resource
+            Diversified Anatomy and Physiology <br /> Lab Resource
           </Typography>
           {/* create login form */}
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
