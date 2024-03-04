@@ -32,7 +32,7 @@ export const CharacterCustomizationProvider = ({ children }) => {
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.HEAD);
   const [skinColor, setSkinColor] = useState(getRandomColor());
-  const [bodySize, setBodySize] = useState(getRandomArbitrary(1, 5)); // Set an initial random body size from 1 - 5
+  const [bodySize, setBodySize] = useState(getRandomArbitrary(1, 8)); // Set an initial random body size from 1 - 5
   const [selectedGender, setGender] = useState(getRandomGender()); 
 
   function getRandomColor() {
