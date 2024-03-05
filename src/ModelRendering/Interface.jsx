@@ -1,4 +1,4 @@
-import React from "react";
+import React, {startTransition} from "react";
 import { Button, Group } from "@mantine/core";
 import { useCharacterCustomization, CameraModes } from "./CharacterCustomizationContext.jsx";
 import { SettingsConfigurator } from "./SettingsConfigurator.jsx";
@@ -6,6 +6,7 @@ import { Tooltip, IconButton} from "@mui/material/";
 import {QuestionMark} from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import DirectionalButtons from "./DirectionalButtons.jsx";
+import PlaneControls from "./PlaneControls.jsx";
 
 import "./Interface.css"; // import style sheet
 
@@ -32,7 +33,9 @@ const Interface = ({ orbitControlsRef, subunit}) => {
       if (orbitControlsRef.current) {
         orbitControlsRef.current.reset(); 
       }
-      setCameraMode(CameraModes.HEAD);
+      startTransition(() => {
+        setCameraMode(CameraModes.HEAD);
+      });
     };
 
   return (
@@ -60,9 +63,10 @@ const Interface = ({ orbitControlsRef, subunit}) => {
           >
             Model Settings
           </Button>
-          {/* render directional terms buttons only if the subunit page is directional terms 
+          {/* render buttons only if the subunit page is the right one
           TODO: if we end up having a lot of conditional displays, might make a new file for this*/}
           {subunit === "Directional Terms" && <DirectionalButtons />}
+          {subunit === "Planes of Sectioning" && <PlaneControls/>} 
         </Group>
       </div>
       <div style={{ position: 'absolute', top: '25%', left: '5%' }}> 
