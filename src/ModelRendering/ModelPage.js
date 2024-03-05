@@ -5,7 +5,7 @@ import Interface from "./Interface.jsx";
 import { useGLTF } from '@react-three/drei';
 import { Button } from '@mui/material';
 
-function ModelPage() {
+function ModelPage({ subunit }) {
   const orbitControlsRef = useRef();
 
     // setting visibility variables for plane sections
@@ -42,6 +42,8 @@ function ModelPage() {
             </>
           )}
 
+      <div>
+         <div className="model-page-container">
         <Canvas
           camera={{ position: [1, 1, 3], fov: 35 }}
           shadows
@@ -57,9 +59,10 @@ function ModelPage() {
 
 
         </Canvas>
-        <Interface orbitControlsRef={orbitControlsRef}  />
-        </>
+        </div>
+        <Interface orbitControlsRef={orbitControlsRef} subunit={subunit} />
+      </div>
+      </>
     );
 }
-
 export default ModelPage;
