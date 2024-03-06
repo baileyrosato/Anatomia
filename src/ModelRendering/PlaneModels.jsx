@@ -23,7 +23,7 @@ function PlaneModels () {
         {!midPlaneVisible && <primitive object={midPlane} position={[0, -1, 0]} />}
         {!tranversePlaneVisible && <primitive object={tranversePlane} position={[0, -1, 0]} />}
         {!paraSagPlaneVisible && <primitive object={paraPlane} position={[0, -1, 0]} />} 
-        {!frontalPlaneVisible && <primitive object={frontalPlane} position={[0, -1, 0]} />}
+        {!frontalPlaneVisible && <primitive object={frontalPlane} position={[-0.06, -1, -0.014]} />}
         </>
     );
 }
