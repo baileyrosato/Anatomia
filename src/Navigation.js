@@ -6,15 +6,8 @@ import './Navigation.css';
 import { Link } from 'react-router-dom';
 
 // material UI imports
-import { Drawer } from '@mui/material'
-import { List } from '@mui/material'
-import { ListItem } from '@mui/material'
-import { ListItemText } from '@mui/material'
-import { IconButton } from '@mui/material'
-import { Menu, Close } from '@mui/icons-material';
-import { Collapse } from '@mui/material';
-import { ExpandLess } from '@mui/icons-material';
-import { ExpandMore } from '@mui/icons-material';
+import { Drawer, List, ListItem, ListItemText, IconButton, Collapse} from '@mui/material'
+import { Menu, Close, ExpandLess, ExpandMore} from '@mui/icons-material';
 
 // import firebase database
 import { firebase } from './Database/config.js';
@@ -93,7 +86,7 @@ const HamburgerMenu = () => {
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
                       <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
-                        <Link to={`/course/${course.unit}/${subunit.title}`}>
+                        <Link to={`/course/${course.unit}/${subunit.title}`} onClick={toggleMenu}>
                           <ListItemText primary={subunit.title} />
                         </Link>
                       </ListItem>

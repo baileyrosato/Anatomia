@@ -8,7 +8,7 @@ import Whiteboard from './ModelRendering/Whiteboard.js';
 
 
 import './SubunitPage.css';
-import Menu from "./Navigation.js";
+import HamburgerMenu from "./Navigation.js";
 
 import { fetchSubunitData, fetchSubunitImageDownloadUrl } from './Database/databaseUtils.js';
 
@@ -71,7 +71,7 @@ const handleCloseFullImage = () => {
         
         {/* Hamburger menu */}
         <div className="HamburgerMenu">
-          <Menu />
+          <HamburgerMenu />
         </div>
 
         {/*Unit Titles*/}
