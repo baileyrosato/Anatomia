@@ -32,8 +32,13 @@ export const CharacterCustomizationProvider = ({ children }) => {
   const [headConfiguratorOpen, setHeadConfiguratorOpen] = useState(false);
   const [cameraMode, setCameraMode] = useState(CameraModes.HEAD);
   const [skinColor, setSkinColor] = useState(getRandomColor());
-  const [bodySize, setBodySize] = useState(getRandomArbitrary(1, 8)); // Set an initial random body size from 1 - 5
+  const [bodySize, setBodySize] = useState(getRandomArbitrary(1, 8)); 
   const [selectedGender, setGender] = useState(getRandomGender()); 
+  // state for planes of sectioning
+  const [midPlaneVisible, setMidPlaneVisible] = useState(true);
+  const [tranversePlaneVisible, setTranversePlaneVisible] = useState(true);
+  const [paraSagPlaneVisible, setParaPlaneVisible] = useState(true);
+  const [frontalPlaneVisible, setFrontalPlaneVisible] = useState(true);
 
   function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * SwatchesColors.length);
@@ -62,6 +67,14 @@ export const CharacterCustomizationProvider = ({ children }) => {
         setBodySize,
         selectedGender,
         setGender,
+        midPlaneVisible,
+        setMidPlaneVisible,
+        tranversePlaneVisible,
+        setTranversePlaneVisible,
+        paraSagPlaneVisible,
+        setParaPlaneVisible,
+        frontalPlaneVisible,
+        setFrontalPlaneVisible,
       }}
     >
       {children}
