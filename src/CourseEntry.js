@@ -22,9 +22,9 @@ export default function CourseEntry() {
   const [alertType, setAlertType] = useState(null);
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
-    setCourseCode(event.target.value);
-  };
+ const handleInputChange = (event) => {
+  setCourseCode(event.target.value);
+};
 
   // check to see if entered course code is correct
   const handleSubmit = (event) => {
@@ -64,6 +64,7 @@ export default function CourseEntry() {
               required
               fullWidth
               id="courseCode"
+              inputProps={{"data-testid": "courseCode-input"}}
               label="Please enter a course code"
               name="courseCode"
               value={courseCode}
