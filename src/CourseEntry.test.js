@@ -20,7 +20,7 @@ describe('CourseEntry Component', () => {
     expect(input.value).toBe('BIO201');
   });
 
-  // test 2
+  // TODO: test 2
   //   it('should navigate to MainMenu upon successful form submission', async () => {
   //     const navigateMock = jest.fn();
   //     require('react-router-dom').useNavigate.mockReturnValue(navigateMock);
