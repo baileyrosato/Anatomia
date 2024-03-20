@@ -8,7 +8,7 @@ function DownloadPDFButton() {
         variant="contained"
         color="primary"
         component="a"
-        href="/UserGuide.pdf"
+        href="/Anatomia_User_Guide.pdf"
         download="BIO201-WebApplication-UserGuide"
         target="_blank"
         rel="noreferrer"
