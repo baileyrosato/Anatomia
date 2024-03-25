@@ -27,16 +27,19 @@
     "react-scripts": "5.0.1",
     "react-three-fiber": "^6.0.13",
     "three": "^0.158.0",
+    "undici": "^6.10.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"
   },
   "jest": {
-    "testMatch": ["**/*.test.js"]
+    "testMatch": [
+      "**/*.test.js"
+    ]
   },
   "eslintConfig": {
     "extends": [

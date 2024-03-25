@@ -10,7 +10,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
-describe('CourseEntry Component', () => {
+describe('CourseEntry Component', () => { 
 
   // test 1
   it('should update courseCode state correctly when input changes', () => {
@@ -19,26 +19,8 @@ describe('CourseEntry Component', () => {
     fireEvent.change(input, { target: { value: 'BIO201'} }); 
     expect(input.value).toBe('BIO201');
   });
-
-  // TODO: test 2
-  //   it('should navigate to MainMenu upon successful form submission', async () => {
-  //     const navigateMock = jest.fn();
-  //     require('react-router-dom').useNavigate.mockReturnValue(navigateMock);
-    
-  //     const { getByTestId, getByText, debug } = render(<CourseEntry />, { wrapper: MemoryRouter });
-  //     debug();
-  //     const input = getByTestId('courseCode');
-  //     const submitButton = getByText('Submit');
-      
-  //     input.dispatchEvent(new Event('change', { target: { value: 'BIO201' } }));
-  //     fireEvent.click(submitButton);
   
-  //     await act(async () => {
-  //       expect(navigateMock).toHaveBeenCalledWith('/MainMenu');
-  //     });
-  //   });
-  
-  // test 3
+  // test 2
   it('should show error alert for incorrect course code', () => {
     const { getByTestId, getByText } = render(<CourseEntry />, { wrapper: MemoryRouter });
     const input = getByTestId('courseCode-input');
