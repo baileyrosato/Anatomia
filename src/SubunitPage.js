@@ -16,36 +16,44 @@ export default function SubunitPage() {
   // get the unit and subunit parameters
   const { unit, subunit } = useParams();
   const [subunitDescription, setSubunitDescription] = useState("");
-  const [subunitImage, setSubunitImage] = useState("");
+  const [subunitImages, setSubunitImages] = useState([]);
   const [showFullImage, setShowFullImage] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
 
   useEffect(() => {
     setSubunitDescription("");
-    setSubunitImage("");
+    setSubunitImages([]);
     fetchSubunitData(unit, subunit)
     .then((subunitData) => {
       setSubunitDescription(subunitData.description); 
-      if (subunitData.image) {
-        fetchSubunitImageDownloadUrl(subunitData.image)
-          .then((url) => {
-            setSubunitImage(url);
-          })
-          .catch((error) => {
-            console.error('Error getting download URL:', error);
+      if (subunitData.images && Array.isArray(subunitData.images)) {
+        const imagePromises = subunitData.images.map(image =>
+          fetchSubunitImageDownloadUrl(image)
+            .then(url => url)
+            .catch(error => {
+              console.error('Error getting download URL:', error);
+              return null;
+            })
+        );
+        Promise.all(imagePromises)
+          .then(imageUrls => {
+            setSubunitImages(imageUrls.filter(url => url !== null));
           });
       }
     })
     .catch((error) => {
       console.error('Error fetching subunit data:', error);
     });
-}, [unit, subunit]); // fetch description and image if the unit and subunit changes
+  }, [unit, subunit]); // fetch description and image if the unit and subunit changes
 
-const handleImageClick = () => {
+const handleImageClick = (index) => {
+  setSelectedImageIndex(index);
   setShowFullImage(true);
 };
 
 const handleCloseFullImage = () => {
+  setSelectedImageIndex(null);
   setShowFullImage(false);
 };  
 
@@ -93,25 +101,26 @@ const handleCloseFullImage = () => {
           </div>
         </div>
 
-         {/* Embedded container with scrollbar that displays the subunit description and image */}
+         {/* Embedded container with scrollbar that displays the subunit description and images */}
          <div className="unit-content-container">
             <div className="unit-content">
               {subunitDescription}
-              {subunitImage && 
+              {subunitImages.map((image, index) => (
                 <img 
-                  src={subunitImage} 
-                  alt="Subunit" 
+                  key={index}
+                  src={image} 
+                  alt={`Subunit ${index}`} 
                   className="subunit-image" 
-                  onClick={handleImageClick} 
+                  onClick={() => handleImageClick(index)} 
                 />
-              }
+              ))}
             </div>
           </div>
-          {/* show the full image on top of page */}
+          {/* show the selected image on top of page */}
           {showFullImage && (
             <div className="full-image-overlay" onClick={handleCloseFullImage}>
               <div className="full-image-container">
-                <img src={subunitImage} alt="Subunit" className="full-image" />
+                <img src={subunitImages[selectedImageIndex]} alt={`Subunit ${selectedImageIndex}`} className="full-image" />
               </div>
             </div>
           )}
