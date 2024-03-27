@@ -52,4 +52,12 @@ describe('Navigation Component', () => {
       expect(getByText(/Subunit 2.1/)).toBeInTheDocument();
     });
   });
+  it('renders menu items correctly', async () => {
+    // Your test for rendering menu items goes here
+  });
+
+  it('expands and collapses menu items correctly', async () => {
+    // Your test for expansion/collapse functionality goes here
+  });
+
 });

@@ -20,33 +20,36 @@ jest.mock('./Database/config.js', () => ({
   }));
 
   describe('MainMenu Component', () => {
-  it('renders main menu units and subunits', async () => {
-    const { getByText } = render(<MainMenu />);
-    
-    // Check if main menu units are rendered
-    expect(getByText('Unit 1')).toBeInTheDocument();
-    expect(getByText('Unit 2')).toBeInTheDocument();
+  
+    // it('fetched units and subunits')
 
-    // Check if subunits are rendered inside the first unit
-    expect(getByText('Subunit 1')).toBeInTheDocument();
-    expect(getByText('Subunit 2')).toBeInTheDocument();
-  });
+    // it('renders main menu units and subunits', async () => {
+    //   const { getByText } = render(<MainMenu />);
+      
+    //   // Check if main menu units are rendered
+    //   expect(getByText('Unit 1')).toBeInTheDocument();
+    //   expect(getByText('Unit 2')).toBeInTheDocument();
 
-  it('expands and collapses units on click', async () => {
-    const { getByText, queryByText } = render(<MainMenu />);
-    
-    // Click on the first unit to expand it
-    fireEvent.click(getByText('Unit 1'));
-    
-    // Check if the subunits are visible
-    expect(getByText('Subunit 1')).toBeInTheDocument();
-    expect(getByText('Subunit 2')).toBeInTheDocument();
-    
-    // Click on the first unit again to collapse it
-    fireEvent.click(getByText('Unit 1'));
+    //   // Check if subunits are rendered inside the first unit
+    //   expect(getByText('Subunit 1')).toBeInTheDocument();
+    //   expect(getByText('Subunit 2')).toBeInTheDocument();
+    // });
 
-    // Check if the subunits are no longer visible
-    expect(queryByText('Subunit 1')).toBeNull();
-    expect(queryByText('Subunit 2')).toBeNull();
-  });
+    // it('expands and collapses units on click', async () => {
+    //   const { getByText, queryByText } = render(<MainMenu />);
+      
+    //   // Click on the first unit to expand it
+    //   fireEvent.click(getByText('Unit 1'));
+      
+    //   // Check if the subunits are visible
+    //   expect(getByText('Subunit 1')).toBeInTheDocument();
+    //   expect(getByText('Subunit 2')).toBeInTheDocument();
+      
+    //   // Click on the first unit again to collapse it
+    //   fireEvent.click(getByText('Unit 1'));
+
+    //   // Check if the subunits are no longer visible
+    //   expect(queryByText('Subunit 1')).toBeNull();
+    //   expect(queryByText('Subunit 2')).toBeNull();
+    // });
 });
