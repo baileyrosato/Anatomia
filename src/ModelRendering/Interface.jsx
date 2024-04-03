@@ -33,9 +33,7 @@ const Interface = ({ orbitControlsRef, subunit}) => {
       if (orbitControlsRef.current) {
         orbitControlsRef.current.reset(); 
       }
-      startTransition(() => {
-        setCameraMode(CameraModes.HEAD);
-      });
+      setCameraMode(CameraModes.HEAD);
     },[orbitControlsRef, setCameraMode]);
     
   // function to reset plane visibility

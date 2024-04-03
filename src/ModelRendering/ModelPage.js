@@ -13,6 +13,7 @@ function ModelPage({ subunit }) {
           camera={{ position: [1, 1, 3], fov: 35 }}
           shadows
           gl={{ preserveDrawingBuffer: true }}
+          data-testid="canvas" 
         >
         <Experience orbitControlsRef={orbitControlsRef} />
         </Canvas>

@@ -1,57 +1,111 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Interface from './Interface.jsx';
-import { CharacterCustomizationProvider } from './CharacterCustomizationContext.jsx';
+import { CharacterCustomizationProvider, useCharacterCustomization } from './CharacterCustomizationContext.jsx';
 import { MantineProvider } from '@mantine/core';
 
-// Mocking the matchMedia function
-window.matchMedia = jest.fn().mockImplementation(query => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addListener: jest.fn(), // Deprecated, but included for compatibility
-  removeListener: jest.fn(), // Deprecated, but included for compatibility
-}));
+jest.mock('./CharacterCustomizationContext.jsx', () => ({
+    ...jest.requireActual('./CharacterCustomizationContext.jsx'),
+    useCharacterCustomization: jest.fn(),
+  }));
 
-describe('Interface Component', () => {
-//   it('renders without crashing', () => {
-//     render(
-//         <MantineProvider>
+describe('Interface component tests', () => {
+it('toggles model settings configurator', () => {
+    const orbitControlsRef = { current: { reset: jest.fn() } }; // Mocked ref object
+    const setHeadConfiguratorOpen = jest.fn();
+
+    // Mock useCharacterCustomization hook
+    useCharacterCustomization.mockReturnValue({
+        headConfiguratorOpen: false,
+        setHeadConfiguratorOpen: setHeadConfiguratorOpen,
+        setCameraMode: jest.fn(),
+        setMidPlaneVisible: jest.fn(),
+        // TODO: set all planes
+      });
+
+    // Render the Interface component
+    const { getByText } = render(
+        <CharacterCustomizationProvider>
+            <MantineProvider>
+                <Interface orbitControlsRef={orbitControlsRef}/>
+            </MantineProvider>
+        </CharacterCustomizationProvider>
+      );
+       // Click the "Model Settings" button
+    fireEvent.click(getByText('Model Settings'));
+
+    // Check if setHeadConfiguratorOpen was called with the opposite value
+    expect(setHeadConfiguratorOpen).toHaveBeenCalledWith(true);
+  });
+
+
+//   test('Clicking reset camera button resets camera mode', () => {
+//     const setCameraModeMock = jest.fn();
+
+//     // Mock the state and functions
+//     useCharacterCustomization.mockReturnValue({
+//       setCameraMode: setCameraModeMock,
+//     });
+
+//     const { getByText } = render(
 //       <CharacterCustomizationProvider>
-//         <Interface orbitControlsRef={null} subunit="Directional Terms" />
+//         <Interface />
 //       </CharacterCustomizationProvider>
-//       </MantineProvider>
 //     );
+
+//     // Click the "Reset Camera" button
+//     fireEvent.click(getByText('Reset Camera'));
+
+//     // Check if setCameraMode was called with the correct mode
+//     expect(setCameraModeMock).toHaveBeenCalledWith('HEAD');
 //   });
 
-// it('configures user settings such as skin color and body size correctly', () => {
-//     // Render the component
-//     render(
-//         <MantineProvider>
-//           <Interface /> 
-//         </MantineProvider>
-//       );
+//   test('Clicking export model button triggers export function', () => {
+//     global.html2canvas = jest.fn(() =>
+//       Promise.resolve({
+//         toDataURL: jest.fn(() => 'data:image/png;base64,...'),
+//       })
+//     );
 
-//     // Simulate user interaction to change skin color and body size
-//     // For example, assume there are input fields or selectors for skin color and body size
-//     const skinColorInput = screen.getByLabelText('Skin Color'); // Adjust the selector according to your component structure
-//     const bodySizeInput = screen.getByLabelText('Body Size'); // Adjust the selector according to your component structure
+//     const { getByText } = render(
+//       <CharacterCustomizationProvider>
+//         <Interface />
+//       </CharacterCustomizationProvider>
+//     );
 
-//     fireEvent.change(skinColorInput, { target: { value: '#ff0000' } }); // Setting skin tone to red (hex value)
-//     fireEvent.change(bodySizeInput, { target: { value: 'Body Size 2' } }); // Selecting Body Size 2
+//     // Click the "Export Model" button
+//     fireEvent.click(getByText('Export Model'));
 
-//     // Assert that the changes are reflected correctly
-//     expect(skinColorInput.value).toBe('#ff0000');
-//     expect(bodySizeInput.value).toBe('Body Size 2');
-
-//     // Optionally, verify any visual changes in the rendered component
-//     // For example, you can check if the component displays the correct skin color and body size
-//     const skinColorDisplay = screen.getByText('#ff0000'); // Assuming the component displays the selected skin color in hex format
-//     const bodySizeDisplay = screen.getByText('Body Size 2'); // Assuming the component displays the selected body size
-
-//     expect(skinColorDisplay).toBeInTheDocument();
-//     expect(bodySizeDisplay).toBeInTheDocument();
-
-// });
-
-});
+//     // Check if html2canvas function was called
+//     expect(global.html2canvas).toHaveBeenCalled();
+//   });
+//   test('Directional buttons and plane controls are rendered based on subunit', () => {
+//     // Mock the subunit prop to test different scenarios
+//     const { getByText, queryByText, rerender } = render(
+//       <CharacterCustomizationProvider>
+//         <Interface subunit="Directional Terms" />
+//       </CharacterCustomizationProvider>
+//     );
+  
+//     // Check if directional buttons are rendered
+//     expect(getByText('Directional Button 1')).toBeInTheDocument();
+//     expect(getByText('Directional Button 2')).toBeInTheDocument();
+  
+//     // Check if plane controls are not rendered
+//     expect(queryByText('Plane Controls')).not.toBeInTheDocument();
+  
+//     // Rerender with a different subunit prop
+//     rerender(
+//       <CharacterCustomizationProvider>
+//         <Interface subunit="Planes of Sectioning" />
+//       </CharacterCustomizationProvider>
+//     );
+  
+//     // Check if plane controls are rendered
+//     expect(getByText('Plane Controls')).toBeInTheDocument();
+  
+//     // Check if directional buttons are not rendered
+//     expect(queryByText('Directional Button 1')).not.toBeInTheDocument();
+//     expect(queryByText('Directional Button 2')).not.toBeInTheDocument();
+//   });
+ });

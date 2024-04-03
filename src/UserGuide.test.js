@@ -20,15 +20,14 @@ const mockCourseData = [
         { title: "Subunit 2.3" },
       ],
     },
-    // Add more units and subunits as needed
   ];
 
-// Manual mock for Firebase
+// manual mock for Firebase
 jest.mock('./Database/config.js', () => {
     const firebase = {
       database: jest.fn(() => ({
         ref: jest.fn(() => ({
-          once: jest.fn().mockResolvedValue({ val: () => mockCourseData }), // Mock data to return
+          once: jest.fn().mockResolvedValue({ val: () => mockCourseData }), // mock data to return
         })),
       })),
     };
@@ -37,14 +36,14 @@ jest.mock('./Database/config.js', () => {
 
 });
 
-// Your test suite and test cases go here
 describe('UserGuide Component', () => {
-    it('should render user guide content correctly', () => {
-      const { getByText } = render(<UserGuide />);
-      
-      expect(getByText('User Guide')).toBeInTheDocument();
-      expect(getByText(/Welcome to the Anatomia User Guide!/)).toBeInTheDocument();
-      expect(getByText(/Click the button below to view and download the user guide./)).toBeInTheDocument();
-      expect(getByText('About The Developers')).toBeInTheDocument();
-    });
+  // test one
+  it('should render user guide content correctly', () => {
+    const { getByText } = render(<UserGuide />);
+    
+    expect(getByText('User Guide')).toBeInTheDocument();
+    expect(getByText(/Welcome to the Anatomia User Guide!/)).toBeInTheDocument();
+    expect(getByText(/Click the button below to view and download the user guide./)).toBeInTheDocument();
+    expect(getByText('About The Developers')).toBeInTheDocument();
+  });
   });

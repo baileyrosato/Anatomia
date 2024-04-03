@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@juggle/resize-observer": "^3.4.0",
     "@mantine/core": "^7.4.2",
     "@mediapipe/tasks-vision": "^0.10.10",
     "@mui/icons-material": "^5.15.6",
@@ -27,8 +28,10 @@
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
     "react-three-fiber": "^6.0.13",
+    "react-use": "^17.5.0",
     "three": "^0.158.0",
     "undici": "^6.10.1",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
