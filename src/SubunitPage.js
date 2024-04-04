@@ -5,6 +5,7 @@ import { MantineProvider } from "@mantine/core";
 import ModelPage from "./ModelRendering/ModelPage.js";
 import { CharacterCustomizationProvider } from "./ModelRendering/CharacterCustomizationContext.jsx";
 import Whiteboard from './ModelRendering/Whiteboard.js';
+import parse from 'html-react-parser';
 
 
 import './SubunitPage.css';
@@ -104,7 +105,7 @@ const handleCloseFullImage = () => {
          {/* Embedded container with scrollbar that displays the subunit description and images */}
          <div className="unit-content-container">
             <div className="unit-content">
-              {subunitDescription}
+              {parse(subunitDescription, {subunitDescription})}
               {subunitImages.map((image, index) => (
                 <img 
                   key={index}
