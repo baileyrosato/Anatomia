@@ -2,7 +2,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useCharacterCustomization, CameraModes } from "./CharacterCustomizationContext.jsx";
 import { useEffect } from "react";
 
-export const CameraControls = ({ orbitControlsRef }) => {
+export const CameraControls = ({ orbitControlsRef}) => {
   const {setHeadConfiguratorOpen} = useCharacterCustomization();
   const { cameraMode } = useCharacterCustomization();
 

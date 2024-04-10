@@ -13,7 +13,7 @@ function DirectionalButtons() {
   };
 
   return (
-    <div className="camera-options">
+    <div className="camera-options" data-testid = 'directional-buttons'>
       <FormControl sx={{m: 1}} size="small">
       <Select 
       value={cameraMode} 

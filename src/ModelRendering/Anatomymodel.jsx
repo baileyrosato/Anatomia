@@ -105,6 +105,4 @@ function Anatomymodel (props) {
       </group>
     );
   }
-useGLTF.preload('/model_files/femaleCaucasian01.gltf')  
-useGLTF.preload('/model_files/maleCaucasian.gltf')
 export default Anatomymodel;

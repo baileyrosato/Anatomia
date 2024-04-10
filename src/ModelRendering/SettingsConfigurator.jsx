@@ -18,7 +18,21 @@ export const SettingsConfigurator = () => {
 
   // sets body size value
   const handleChange = (event) => {
+    console.log('handleChange called with value:', event.target.value);
     setBodySize(event.target.value);
+  };
+
+  const handleColorChange = (value) => {
+    // Check if the input is a valid hex color
+    const isValidColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(value);
+    console.log(isValidColor);
+    if (isValidColor) {
+      setSkinColor(value);
+    } else {
+      // If the input is invalid, clear the skin color value
+      setSkinColor('');
+    }
+    console.log(skinColor);
   };
 
   const femaleIcon = (
@@ -34,10 +48,11 @@ export const SettingsConfigurator = () => {
       <div>
         <p>Skin Tone:</p>
       <ColorInput
-        format="hex"
+        format="hex" 
         swatches={SwatchesColors}
         value={skinColor}
-        onChange={setSkinColor}
+        onChange={handleColorChange}
+        data-testid = 'skin-tone-input'
       />
        </div>
       <div>
@@ -48,7 +63,9 @@ export const SettingsConfigurator = () => {
         onLabel={femaleIcon} 
         offLabel={maleIcon}
         checked={selectedGender === 'female'}
-        onChange={() => setGender(selectedGender === 'female' ? 'male' : 'female')} />
+        onChange={() => setGender(selectedGender === 'female' ? 'male' : 'female')} 
+        data-testid='gender-switch'
+        />
       </div>
       <div>
         <p>Body Size:</p>
@@ -58,6 +75,7 @@ export const SettingsConfigurator = () => {
         id="body-type-select"
         value={bodySize}
         onChange={handleChange}
+        data-testid='body-size-dropdown'
         >
           <MenuItem value={1}>Body 1</MenuItem>
           <MenuItem value={2}>Body 2</MenuItem>

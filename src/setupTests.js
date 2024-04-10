@@ -6,6 +6,7 @@ import '@testing-library/jest-dom';
 import "jest-canvas-mock";
 import 'firebase/database';
 import './setupDomTests.ts';
+import 'resize-observer-polyfill/dist/ResizeObserver.global';
 
 import { TextEncoder, TextDecoder } from 'util';
 

@@ -30,7 +30,7 @@ function PlaneControls() {
 
     return (
     <>
-    <Button style={{ float: 'right'}} className="PlanesButton" onClick={handlePlaneButtonClick}>Planes</Button>
+    <Button style={{ float: 'right'}} className="PlanesButton" data-testid = "plane-buttons" onClick={handlePlaneButtonClick}>Planes </Button>
         <Popover
             id={id}
             open={open}

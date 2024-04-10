@@ -6,7 +6,7 @@ const Experience = ({ orbitControlsRef }) => {
   return (
     <>
       <CameraControls orbitControlsRef={orbitControlsRef}/>
-      <ambientLight />
+      <ambientLight/>
       <directionalLight
         position={[5, 10, 7]}
       />
