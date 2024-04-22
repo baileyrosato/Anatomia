@@ -14,3 +14,6 @@ Installation of npm(10.2.3), React, Node.js(20.9.0), and Firebase Realtime.
 
 Steps for installation and running a React application are summarized here:
 https://medium.com/front-end-weekly/a-beginners-guide-building-front-end-applications-with-react-1f0d3e75c0a7
+
+## Connecting the database to the application
+The database configuration file must be downloaded from the Google Drive containing all database information.
