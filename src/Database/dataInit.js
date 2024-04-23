@@ -10,24 +10,24 @@ const courseData = [
     unit: 'Unit 1: Organs, Systems, and the Organization of the Body',
     modelfiles: {
       femaleModels: {
-        body1: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian01.gltf',
-        body2: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian02.gltf',
-        body3: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian03.gltf',
-        body4: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian04.gltf',
-        body5: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian05.gltf',
-        body6: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian06.gltf',
-        body7: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian07.gltf',
-        body8: 'gs://anatomia-f43c1.appspot.com/femaleCaucasian08.gltf'
+        body1: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian01.gltf',
+        body2: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian02.gltf',
+        body3: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian03.gltf',
+        body4: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian04.gltf',
+        body5: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian05.gltf',
+        body6: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian06.gltf',
+        body7: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian07.gltf',
+        body8: 'gs://diversified-lab-resource-app.appspot.com/femaleCaucasian08.gltf'
       },
       maleModels: {
-        body1: 'gs://anatomia-f43c1.appspot.com/maleCaucasian01.gltf',
-        body2: 'gs://anatomia-f43c1.appspot.com/maleCaucasian02.gltf',
-        body3: 'gs://anatomia-f43c1.appspot.com/maleCaucasian03.gltf',
-        body4: 'gs://anatomia-f43c1.appspot.com/maleCaucasian04.gltf',
-        body5: 'gs://anatomia-f43c1.appspot.com/maleCaucasian05.gltf',
-        body6: 'gs://anatomia-f43c1.appspot.com/maleCaucasian06.gltf',
-        body7: 'gs://anatomia-f43c1.appspot.com/maleCaucasian07.gltf',
-        body8: 'gs://anatomia-f43c1.appspot.com/maleCaucasian08.gltf',
+        body1: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian01.gltf',
+        body2: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian02.gltf',
+        body3: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian03.gltf',
+        body4: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian04.gltf',
+        body5: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian05.gltf',
+        body6: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian06.gltf',
+        body7: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian07.gltf',
+        body8: 'gs://diversified-lab-resource-app.appspot.com/maleCaucasian08.gltf',
       }
     },
     subunits: [  
@@ -50,14 +50,14 @@ const courseData = [
         title:'Body Cavities', 
         description: 'The body contains two main body cavities: the <b>ventral</b> and the <b>dorsal cavity</b>.<br> <br>The <b>ventral</b> cavity is further divided into thoracic cavity, <i>superior to the diaphragm</i>, which is divided into the <u>mediastinum</u> and the  <u>pleural(2)</u> and  <u>pericardia</u>l cavities. Abdominopelvic cavity, <i>inferior to the diaphragm</i>, which is divided into the <u>abdominal</u> and <u>pelvic</u> cavities. <br><br>The <b>dorsal</b> cavity is further subdivided into the <u>cranial</u> cavity and <u>vertebral</u> cavity',
         images: [
-          'gs://anatomia-f43c1.appspot.com/BodyCavities1.png',
-          'gs://anatomia-f43c1.appspot.com/BodyCavities2.png'
+          'gs://diversified-lab-resource-app.appspot.com/BodyCavities1.png',
+          'gs://diversified-lab-resource-app.appspot.com/BodyCavities2.png'
         ] 
       },
       {
         title:'Regions of the Body', 
         description: 'The abdomen is divided into either four quadrants or 9 regions.',
-        images: ['gs://anatomia-f43c1.appspot.com/BodyRegions.png']
+        images: ['gs://diversified-lab-resource-app.appspot.com/BodyRegions.png']
       }
     ]
   },
