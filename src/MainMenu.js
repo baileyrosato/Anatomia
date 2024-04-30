@@ -15,8 +15,7 @@ import { ExpandMore } from '@mui/icons-material';
 // import firebase database
 import { firebase } from './Database/config.js';
 
-// import './MainMenu.css';
-
+import './MainMenu.css';
 
 export default function MainMenu() {
 
@@ -54,7 +53,7 @@ export default function MainMenu() {
   };
  
   return (
-    <div className="main-menu">
+    <div className="main-menu" style={{ backgroundColor: 'white', color: 'black' }}>
       <h2>BIO201 Menu</h2>
       <List>
         {courseData.map((course, index) => (
