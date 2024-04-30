@@ -17,7 +17,7 @@ import { firebase } from './Database/config.js';
 
 import './MainMenu.css';
 
-export default function MainMenu() {
+export default function MainMenu() { 
 
   // use state to manage the expanded/collapsed state of units
   const [courseData, setCourseData] = useState([]);
@@ -79,8 +79,8 @@ export default function MainMenu() {
                   <List component="div" disablePadding>
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
-                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px' }}>
-                        <Link to={`/course/${course.unit}/${subunit.title}`}>
+                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
+                        <Link to={`/course/${course.unit}/${subunit.title}`} style={{color: 'black', textDecoration: 'none'}}>
                           <ListItemText primary={subunit.title} />
                         </Link>
                       </ListItem>
