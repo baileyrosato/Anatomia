@@ -86,7 +86,7 @@ const HamburgerMenu = () => {
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
                       <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
-                        <Link to={`/course/${course.unit}/${subunit.title}`} onClick={toggleMenu}>
+                        <Link to={`/course/${course.unit}/${subunit.title}`} onClick={toggleMenu} style={{color: 'black', textDecoration: 'none'}}>
                           <ListItemText primary={subunit.title} />
                         </Link>
                       </ListItem>

@@ -15,10 +15,9 @@ import { ExpandMore } from '@mui/icons-material';
 // import firebase database
 import { firebase } from './Database/config.js';
 
-// import './MainMenu.css';
+import './MainMenu.css';
 
-
-export default function MainMenu() {
+export default function MainMenu() { 
 
   // use state to manage the expanded/collapsed state of units
   const [courseData, setCourseData] = useState([]);
@@ -54,7 +53,7 @@ export default function MainMenu() {
   };
  
   return (
-    <div className="main-menu">
+    <div className="main-menu" style={{ backgroundColor: 'white', color: 'black' }}>
       <h2>BIO201 Menu</h2>
       <List>
         {courseData.map((course, index) => (
@@ -80,8 +79,8 @@ export default function MainMenu() {
                   <List component="div" disablePadding>
                     {course.subunits.map((subunit, subIndex) => (
                       // create a unit for the subunit info
-                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px' }}>
-                        <Link to={`/course/${course.unit}/${subunit.title}`}>
+                      <ListItem key={subIndex} className="subunit-container" style={{ paddingLeft: '32px'}}>
+                        <Link to={`/course/${course.unit}/${subunit.title}`} style={{color: 'black', textDecoration: 'none'}}>
                           <ListItemText primary={subunit.title} />
                         </Link>
                       </ListItem>

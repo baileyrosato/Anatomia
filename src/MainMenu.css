@@ -1,31 +1,21 @@
+body {
+  background-color: white;
+}
 
 .main-menu {
-  background-color: rgb(251,248,243);
+  color: var(--text-color);
 }
 
-.main-menu h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  background-color: rgb(251, 248, 243);
+/* light mode styles */
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: #000; 
+  }
 }
 
-.main-menu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 12px;
-  background-color: rgb(251, 248, 243);
-}
-
-.unit-container {
-  border: 1px solid black; 
-  border-radius: 8px;
-  padding: 10px;
-  margin: 12px;
-  background-color: rgb(251, 248, 243);
-}
-
-.subunit-container {
-  margin-left: 20px;
-  padding: 10px;
-  background-color: rgb(251, 248, 243);
+/* dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #000; 
+  }
 }
