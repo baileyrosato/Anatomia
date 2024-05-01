@@ -5,8 +5,8 @@ import PlaneModels from "./PlaneModels.jsx";
 const Experience = ({ orbitControlsRef }) => {
   return (
     <>
-      <CameraControls orbitControlsRef={orbitControlsRef}/>
-      <ambientLight/>
+      <CameraControls orbitControlsRef={orbitControlsRef} data-testid="camera-controls"/>
+      <ambientLight data-testid="ambient-light"/>
       <directionalLight
         position={[5, 10, 7]}
       />
@@ -14,7 +14,7 @@ const Experience = ({ orbitControlsRef }) => {
         position={[-5,-10,-7]}
       />
       <group position={[0, -1, 0]}>
-        <Anatomymodel />
+        <Anatomymodel data-testid="anatomy-model"/>
       </group>
       <PlaneModels />
       <mesh
