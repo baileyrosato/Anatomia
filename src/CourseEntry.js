@@ -29,7 +29,7 @@ export default function CourseEntry() {
   // check to see if entered course code is correct
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (courseCode.toUpperCase() === 'BIO201') {
+    if (courseCode.toUpperCase() === 'MH6HGPYF8NC8') {
       setAlertType('success');
       navigate('/MainMenu');
     } else {
